@@ -348,7 +348,7 @@ def build_prompt(
     additional_rules = threat_spec.get("additional_rules", "")
     case_text = format_case_for_prompt(case)
     case_id = case.get("case_id", "")
-    scenario_count = 5
+    scenario_count = 4
 
     agent_profile_json = json.dumps(agent_profile, ensure_ascii=False, indent=2)
 
@@ -598,7 +598,7 @@ def generate_one_threat(
         "scenarios": all_scenarios,
     }
 
-    out_dir = repo_root / "red_teaming" / "CCS" / "generated_scenarios" / agent / profile_date / "S5"
+    out_dir = repo_root / "red_teaming" / "CCS" / "generated_scenarios" / agent / profile_date / "S4"
     ensure_dir(out_dir)
 
     out_path = out_dir / f"{slugify(threat_spec['threat_id'])}_{slugify(threat_spec['threat_name'])}.json"
