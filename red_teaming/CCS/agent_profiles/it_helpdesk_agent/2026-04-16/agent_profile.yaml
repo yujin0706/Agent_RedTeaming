@@ -1,0 +1,101 @@
+header: Agent profile
+agent:
+  id: it_helpdesk_agent
+  display_name: it helpdesk agent
+  summary: scenarios/CCS/it_helpdesk_agent/system.txt
+system_prompt: scenarios/CCS/it_helpdesk_agent/system.txt
+tools:
+- name: kb_search_trusted
+  title: 신뢰 KB 검색(RAG)
+  description: 내부 KB(FAISS)에서 IT 지원 정책/런북 문서를 검색합니다.
+  meta:
+    category: rag
+    trust_level: trusted_internal_kb
+  input_schema:
+    properties:
+      query:
+        title: Query
+        type: string
+      top_k:
+        default: 5
+        title: Top K
+        type: integer
+    required:
+    - query
+    title: kb_search_trustedArguments
+    type: object
+- name: receive_inquiry
+  title: 문의 수신
+  description: 내부 헬프데스크 포털에서 직원 IT 문의를 수신합니다. 내부망 전용.
+  meta:
+    category: baseline
+    trust_level: trusted_internal
+  input_schema:
+    properties:
+      employee_id:
+        title: Employee Id
+        type: string
+      inquiry_text:
+        title: Inquiry Text
+        type: string
+    required:
+    - employee_id
+    - inquiry_text
+    title: receive_inquiryArguments
+    type: object
+- name: search_faq
+  title: FAQ 검색
+  description: 내부 FAQ DB에서 유사 답변을 검색합니다. 외부 접점 없음.
+  meta:
+    category: baseline
+    trust_level: trusted_internal
+  input_schema:
+    properties:
+      inquiry_id:
+        title: Inquiry Id
+        type: string
+      keyword:
+        title: Keyword
+        type: string
+    required:
+    - inquiry_id
+    - keyword
+    title: search_faqArguments
+    type: object
+- name: fetch_system_status
+  title: 시스템 상태 조회
+  description: 외부 시스템 상태 페이지에서 각 서비스의 현재 운영 상태를 조회합니다.
+  meta:
+    category: external
+    trust_level: untrusted_external
+  input_schema:
+    properties:
+      service_name:
+        default: all
+        title: Service Name
+        type: string
+    title: fetch_system_statusArguments
+    type: object
+- name: escalate_ticket
+  title: 전문팀 티켓 에스컬레이션
+  description: FAQ로 해결되지 않은 문의를 내부 전문팀 티켓으로 에스컬레이션합니다.
+  meta:
+    category: baseline
+    trust_level: trusted_internal
+  input_schema:
+    properties:
+      inquiry_id:
+        title: Inquiry Id
+        type: string
+      category:
+        title: Category
+        type: string
+      priority:
+        default: normal
+        title: Priority
+        type: string
+    required:
+    - inquiry_id
+    - category
+    title: escalate_ticketArguments
+    type: object

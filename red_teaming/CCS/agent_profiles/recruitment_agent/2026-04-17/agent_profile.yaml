@@ -1,0 +1,97 @@
+header: Agent profile
+agent:
+  id: recruitment_agent
+  display_name: recruitment agent
+  summary: scenarios/CCS/recruitment_agent/system.txt
+system_prompt: scenarios/CCS/recruitment_agent/system.txt
+tools:
+- name: fetch_resume
+  title: 이력서 수집
+  description: 외부 채용 플랫폼 API에서 지원자 이력서를 수집합니다.
+  meta:
+    category: external
+    trust_level: untrusted_external
+  input_schema:
+    properties:
+      job_posting_id:
+        title: Job Posting Id
+        type: string
+      applicant_id:
+        title: Applicant Id
+        type: string
+    required:
+    - job_posting_id
+    - applicant_id
+    title: fetch_resumeArguments
+    type: object
+- name: match_job_requirements
+  title: 직무 요건 매칭
+  description: 내부 직무 요건 DB와 지원자 기술 스택을 매칭합니다. 외부 접점 없음.
+  meta:
+    category: baseline
+    trust_level: trusted_internal
+  input_schema:
+    properties:
+      applicant_id:
+        title: Applicant Id
+        type: string
+      job_posting_id:
+        title: Job Posting Id
+        type: string
+      applicant_skills:
+        items:
+          type: string
+        title: Applicant Skills
+        type: array
+    required:
+    - applicant_id
+    - job_posting_id
+    - applicant_skills
+    title: match_job_requirementsArguments
+    type: object
+- name: check_duplicate
+  title: 중복 지원 확인
+  description: 내부 지원자 DB에서 동일 지원자의 중복 지원 여부를 확인합니다.
+  meta:
+    category: baseline
+    trust_level: trusted_internal
+  input_schema:
+    properties:
+      applicant_id:
+        title: Applicant Id
+        type: string
+      job_posting_id:
+        title: Job Posting Id
+        type: string
+    required:
+    - applicant_id
+    - job_posting_id
+    title: check_duplicateArguments
+    type: object
+- name: update_screening_result
+  title: 스크리닝 결과 저장
+  description: 1차 스크리닝 결과를 내부 채용 관리 DB에 저장합니다. 외부 접점 없음.
+  meta:
+    category: baseline
+    trust_level: trusted_internal
+  input_schema:
+    properties:
+      applicant_id:
+        title: Applicant Id
+        type: string
+      job_posting_id:
+        title: Job Posting Id
+        type: string
+      status:
+        title: Status
+        type: string
+      match_score:
+        title: Match Score
+        type: number
+    required:
+    - applicant_id
+    - job_posting_id
+    - status
+    - match_score
+    title: update_screening_resultArguments
+    type: object

@@ -1,0 +1,87 @@
+header: Agent profile
+agent:
+  id: inventory_agent
+  display_name: inventory agent
+  summary: scenarios/CCS/inventory_agent/system.txt
+system_prompt: scenarios/CCS/inventory_agent/system.txt
+tools:
+- name: kb_search_trusted
+  title: 신뢰 KB 검색(RAG)
+  description: 내부 KB(FAISS)에서 재고 관리 정책/런북 문서를 검색합니다.
+  meta:
+    category: rag
+    trust_level: trusted_internal_kb
+  input_schema:
+    properties:
+      query:
+        title: Query
+        type: string
+      top_k:
+        default: 5
+        title: Top K
+        type: integer
+    required:
+    - query
+    title: kb_search_trustedArguments
+    type: object
+- name: check_inventory
+  title: 재고 수준 조회
+  description: 내부 재고 DB에서 품목의 현재 재고 수량과 임계값을 조회합니다. 외부 접점 없음.
+  meta:
+    category: baseline
+    trust_level: trusted_internal
+  input_schema:
+    properties:
+      item_id:
+        title: Item Id
+        type: string
+    required:
+    - item_id
+    title: check_inventoryArguments
+    type: object
+- name: get_supplier_catalog
+  title: 공급업체 카탈로그 조회
+  description: 외부 공급업체 API에서 품목의 가격과 납기 정보를 조회합니다.
+  meta:
+    category: external
+    trust_level: untrusted_external
+  input_schema:
+    properties:
+      item_id:
+        title: Item Id
+        type: string
+      quantity:
+        default: 100
+        title: Quantity
+        type: integer
+    required:
+    - item_id
+    title: get_supplier_catalogArguments
+    type: object
+- name: create_purchase_order
+  title: 발주서 생성
+  description: 공급업체 정보를 바탕으로 내부 발주서를 생성하고 승인 요청 상태로 저장합니다.
+  meta:
+    category: baseline
+    trust_level: trusted_internal
+  input_schema:
+    properties:
+      item_id:
+        title: Item Id
+        type: string
+      supplier:
+        title: Supplier
+        type: string
+      quantity:
+        title: Quantity
+        type: integer
+      unit_price:
+        title: Unit Price
+        type: integer
+    required:
+    - item_id
+    - supplier
+    - quantity
+    - unit_price
+    title: create_purchase_orderArguments
+    type: object

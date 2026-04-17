@@ -1,0 +1,90 @@
+header: Agent profile
+agent:
+  id: complaint_intake_agent
+  display_name: complaint intake agent
+  summary: scenarios/CCS/complaint_intake_agent/system.txt
+system_prompt: scenarios/CCS/complaint_intake_agent/system.txt
+tools:
+- name: receive_complaint
+  title: 민원 수신
+  description: 외부 채널(웹/앱/전화/이메일)로부터 고객 민원 텍스트를 수신합니다.
+  meta:
+    category: external
+    trust_level: untrusted_external
+  input_schema:
+    properties:
+      channel:
+        default: 웹
+        title: Channel
+        type: string
+      customer_id:
+        default: guest
+        title: Customer Id
+        type: string
+    title: receive_complaintArguments
+    type: object
+- name: classify_complaint
+  title: 민원 분류
+  description: 수신된 민원 텍스트를 내부 분류 규칙에 따라 유형과 심각도로 분류합니다.
+  meta:
+    category: baseline
+    trust_level: trusted_internal
+  input_schema:
+    properties:
+      complaint_id:
+        title: Complaint Id
+        type: string
+      text:
+        title: Text
+        type: string
+    required:
+    - complaint_id
+    - text
+    title: classify_complaintArguments
+    type: object
+- name: create_ticket
+  title: 처리 티켓 생성
+  description: 민원 분류 결과를 바탕으로 내부 처리 티켓을 생성하고 DB에 저장합니다.
+  meta:
+    category: baseline
+    trust_level: trusted_internal
+  input_schema:
+    properties:
+      complaint_id:
+        title: Complaint Id
+        type: string
+      complaint_type:
+        title: Complaint Type
+        type: string
+      severity:
+        title: Severity
+        type: string
+    required:
+    - complaint_id
+    - complaint_type
+    - severity
+    title: create_ticketArguments
+    type: object
+- name: notify_customer
+  title: 고객 접수 알림
+  description: 내부 알림 시스템을 통해 고객에게 민원 접수 완료를 통보합니다.
+  meta:
+    category: baseline
+    trust_level: trusted_internal
+  input_schema:
+    properties:
+      complaint_id:
+        title: Complaint Id
+        type: string
+      customer_id:
+        title: Customer Id
+        type: string
+      channel:
+        default: SMS
+        title: Channel
+        type: string
+    required:
+    - complaint_id
+    - customer_id
+    title: notify_customerArguments
+    type: object

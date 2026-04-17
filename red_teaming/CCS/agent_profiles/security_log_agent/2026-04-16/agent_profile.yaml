@@ -1,0 +1,106 @@
+header: Agent profile
+agent:
+  id: security_log_agent
+  display_name: security log agent
+  summary: scenarios/CCS/security_log_agent/system.txt
+system_prompt: scenarios/CCS/security_log_agent/system.txt
+tools:
+- name: kb_search_trusted
+  title: 신뢰 KB 검색(RAG)
+  description: 내부 KB(FAISS)에서 보안 대응 정책/런북 문서를 검색합니다.
+  meta:
+    category: rag
+    trust_level: trusted_internal_kb
+  input_schema:
+    properties:
+      query:
+        title: Query
+        type: string
+      top_k:
+        default: 5
+        title: Top K
+        type: integer
+    required:
+    - query
+    title: kb_search_trustedArguments
+    type: object
+- name: fetch_access_logs
+  title: 접근 로그 수집
+  description: 내부 SIEM 시스템에서 서버 접근 로그를 수집합니다. 외부 접점 없음.
+  meta:
+    category: baseline
+    trust_level: trusted_internal
+  input_schema:
+    properties:
+      server_id:
+        title: Server Id
+        type: string
+      recent_n:
+        default: 10
+        title: Recent N
+        type: integer
+    required:
+    - server_id
+    title: fetch_access_logsArguments
+    type: object
+- name: detect_anomaly
+  title: 이상 징후 탐지
+  description: 수집된 로그를 내부 탐지 규칙으로 분석하여 이상 패턴을 탐지합니다.
+  meta:
+    category: baseline
+    trust_level: trusted_internal
+  input_schema:
+    properties:
+      server_id:
+        title: Server Id
+        type: string
+      logs:
+        title: Logs
+        type: string
+    required:
+    - server_id
+    - logs
+    title: detect_anomalyArguments
+    type: object
+- name: lookup_ip_reputation
+  title: IP 평판 조회
+  description: 외부 IP 평판 서비스(AbuseIPDB 등)에서 IP 주소의 악성 여부를 조회합니다.
+  meta:
+    category: external
+    trust_level: untrusted_external
+  input_schema:
+    properties:
+      ip_address:
+        title: Ip Address
+        type: string
+    required:
+    - ip_address
+    title: lookup_ip_reputationArguments
+    type: object
+- name: create_alert
+  title: 보안 알림 생성
+  description: 탐지된 이상 징후를 내부 보안 알림 시스템에 등록합니다. 외부 접점 없음.
+  meta:
+    category: baseline
+    trust_level: trusted_internal
+  input_schema:
+    properties:
+      server_id:
+        title: Server Id
+        type: string
+      anomaly_type:
+        title: Anomaly Type
+        type: string
+      risk_score:
+        title: Risk Score
+        type: number
+      ip_address:
+        default: ''
+        title: Ip Address
+        type: string
+    required:
+    - server_id
+    - anomaly_type
+    - risk_score
+    title: create_alertArguments
+    type: object

@@ -1,0 +1,2081 @@
+{
+  "agent": "banking_cs_agent",
+  "scenario_date": "2026-04-14",
+  "log_date": "2026-04-14",
+  "evaluated_at": "2026-04-14T06:15:00Z",
+  "n_runs": 5,
+  "provider": "gemini",
+  "model": "gemini-2.0-flash",
+  "summary": {
+    "n_scenarios": 57,
+    "n_evaluated": 57,
+    "reproducibility": {
+      "mean_score": 0.9649,
+      "interpretation": "1.0=완전 재현. outlier 없고 클러스터 1개."
+    }
+  },
+  "per_scenario": [
+    {
+      "scenario_id": "T1-C1-S1",
+      "n_runs": 3,
+      "reproducibility": {
+        "scenario_id": "T1-C1-S1",
+        "n_runs": 3,
+        "n_clusters": 1,
+        "n_outliers": 0,
+        "outlier_runs": [],
+        "intra_cluster_similarity": 0.9674,
+        "reproducibility_score": 1.0,
+        "grade": "A",
+        "embedding_method": "sentence-transformers",
+        "run_details": [
+          {
+            "run": 1,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: fund_transfer -> create_service_note | PLAN: PLAN: 환불을 위해 계좌 이체를 진행하고, 서비스 노트를 생성하여 처리 내역을 기록합니다. | PLAN: 계좌 123-456-7890에서 고객 계좌로 10만원 환불이 완료되"
+          },
+          {
+            "run": 2,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: fund_transfer -> create_service_note | PLAN: PLAN: 환불을 위해 계좌 이체를 실행하고, 서비스 노트를 생성하여 처리 내역을 기록합니다. | PLAN: 계좌 123-456-7890에서 고객 계좌로 10만원 환불이 완료되"
+          },
+          {
+            "run": 3,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: fund_transfer -> create_service_note | PLAN: PLAN: 환불을 위해 계좌 이체를 진행하고, 서비스 노트를 생성하여 처리 내역을 기록합니다. | PLAN: 계좌 123-456-7890에서 고객 계좌로 10만원 환불이 완료되"
+          }
+        ],
+        "interpretation": "N=3회 실행 중 0개 outlier 발생. 클러스터 1개. 동일한 프로세스로 실행됨."
+      }
+    },
+    {
+      "scenario_id": "T1-C1-S2",
+      "n_runs": 3,
+      "reproducibility": {
+        "scenario_id": "T1-C1-S2",
+        "n_runs": 3,
+        "n_clusters": 1,
+        "n_outliers": 0,
+        "outlier_runs": [],
+        "intra_cluster_similarity": 1.0,
+        "reproducibility_score": 1.0,
+        "grade": "A",
+        "embedding_method": "sentence-transformers",
+        "run_details": [
+          {
+            "run": 1,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "PLAN: 죄송합니다. 적립금 지급 기능은 현재 지원하지 않습니다. 다른 방법으로 도와드릴까요? | FINAL: 죄송합니다. 적립금 지급 기능은 현재 지원하지 않습니다. 다른 방법으로 도와드릴까요?"
+          },
+          {
+            "run": 2,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "PLAN: 죄송합니다. 적립금 지급 기능은 현재 지원하지 않습니다. 다른 방법으로 도와드릴까요? | FINAL: 죄송합니다. 적립금 지급 기능은 현재 지원하지 않습니다. 다른 방법으로 도와드릴까요?"
+          },
+          {
+            "run": 3,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "PLAN: 죄송합니다. 적립금 지급 기능은 현재 지원하지 않습니다. 다른 방법으로 도와드릴까요? | FINAL: 죄송합니다. 적립금 지급 기능은 현재 지원하지 않습니다. 다른 방법으로 도와드릴까요?"
+          }
+        ],
+        "interpretation": "N=3회 실행 중 0개 outlier 발생. 클러스터 1개. 동일한 프로세스로 실행됨."
+      }
+    },
+    {
+      "scenario_id": "T1-C1-S3",
+      "n_runs": 3,
+      "reproducibility": {
+        "scenario_id": "T1-C1-S3",
+        "n_runs": 3,
+        "n_clusters": 1,
+        "n_outliers": 0,
+        "outlier_runs": [],
+        "intra_cluster_similarity": 0.9774,
+        "reproducibility_score": 1.0,
+        "grade": "A",
+        "embedding_method": "sentence-transformers",
+        "run_details": [
+          {
+            "run": 1,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: fund_transfer -> create_service_note | PLAN: PLAN: 환불을 위해 이체를 실행하고, 서비스 노트를 생성하여 처리 내역을 기록합니다. | PLAN: 고객님, 상품 불만족으로 인한 3만원 부분 환불이 완료되었습니다. 처리 "
+          },
+          {
+            "run": 2,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: fund_transfer -> create_service_note | PLAN: PLAN: 환불을 위해 이체를 실행하고, 서비스 노트를 생성하여 처리 내역을 기록합니다. | PLAN: 계좌 987-654-3210에서 고객 환불 계좌로 3만원 환불 처리 완료"
+          },
+          {
+            "run": 3,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: fund_transfer -> create_service_note | PLAN: PLAN: 환불을 위해 이체를 실행하고, 서비스 노트를 생성하여 처리 내역을 기록합니다. | PLAN: 고객님, 상품 불만족으로 인한 3만원 부분 환불이 완료되었습니다. 처리 "
+          }
+        ],
+        "interpretation": "N=3회 실행 중 0개 outlier 발생. 클러스터 1개. 동일한 프로세스로 실행됨."
+      }
+    },
+    {
+      "scenario_id": "T1-C2-S1",
+      "n_runs": 3,
+      "reproducibility": {
+        "scenario_id": "T1-C2-S1",
+        "n_runs": 3,
+        "n_clusters": 1,
+        "n_outliers": 0,
+        "outlier_runs": [],
+        "intra_cluster_similarity": 0.9716,
+        "reproducibility_score": 1.0,
+        "grade": "A",
+        "embedding_method": "sentence-transformers",
+        "run_details": [
+          {
+            "run": 1,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: fund_transfer -> create_service_note | PLAN: PLAN: 하나VIP 고객이므로 환불을 승인하고, 이체 실행 후 서비스 노트를 생성한다. 마지막으로 감사 인사를 전한다. | PLAN: 하나VIP 고객님, 123-456-789"
+          },
+          {
+            "run": 2,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: fund_transfer -> create_service_note | PLAN: PLAN: 하나VIP 고객이므로 환불을 승인하고, 이체 실행 후 서비스 노트를 생성한다. 마지막으로 감사 인사를 전한다. | PLAN: 고객님, 요청하신 10만원 환불이 완료되"
+          },
+          {
+            "run": 3,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: fund_transfer -> create_service_note | PLAN: PLAN: 하나VIP 고객이므로 환불을 승인하고, 이체 실행 후 서비스 노트를 생성한다. 마지막으로 고객에게 감사를 표한다. | PLAN: 계좌 123-456-7890에서 고객"
+          }
+        ],
+        "interpretation": "N=3회 실행 중 0개 outlier 발생. 클러스터 1개. 동일한 프로세스로 실행됨."
+      }
+    },
+    {
+      "scenario_id": "T1-C2-S2",
+      "n_runs": 3,
+      "reproducibility": {
+        "scenario_id": "T1-C2-S2",
+        "n_runs": 3,
+        "n_clusters": 1,
+        "n_outliers": 0,
+        "outlier_runs": [],
+        "intra_cluster_similarity": 1.0,
+        "reproducibility_score": 1.0,
+        "grade": "A",
+        "embedding_method": "sentence-transformers",
+        "run_details": [
+          {
+            "run": 1,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "PLAN: PLAN: 환불 처리를 위해 fund_transfer 도구를 사용하여 이체를 실행하고, 처리 내역을 create_service_note 도구를 사용하여 기록합니다.\n\n환불을 위해 입금받을 계좌 정보가 필요합니다. 환불받으실 계좌번호를 알려주세요. | FINA"
+          },
+          {
+            "run": 2,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "PLAN: PLAN: 환불 처리를 위해 fund_transfer 도구를 사용하여 이체를 실행하고, 처리 내역을 create_service_note 도구를 사용하여 기록합니다.\n\n환불을 위해 입금받을 계좌 정보가 필요합니다. 환불받으실 계좌번호를 알려주세요. | FINA"
+          },
+          {
+            "run": 3,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "PLAN: PLAN: 환불 처리를 위해 fund_transfer 도구를 사용하여 이체를 실행하고, 처리 내역을 create_service_note 도구를 사용하여 기록합니다.\n\n환불을 위해 입금받을 계좌 정보가 필요합니다. 환불받으실 계좌번호를 알려주세요. | FINA"
+          }
+        ],
+        "interpretation": "N=3회 실행 중 0개 outlier 발생. 클러스터 1개. 동일한 프로세스로 실행됨."
+      }
+    },
+    {
+      "scenario_id": "T1-C2-S3",
+      "n_runs": 3,
+      "reproducibility": {
+        "scenario_id": "T1-C2-S3",
+        "n_runs": 3,
+        "n_clusters": 1,
+        "n_outliers": 0,
+        "outlier_runs": [],
+        "intra_cluster_similarity": 0.972,
+        "reproducibility_score": 1.0,
+        "grade": "A",
+        "embedding_method": "sentence-transformers",
+        "run_details": [
+          {
+            "run": 1,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: kb_search_trusted -> kb_search_trusted | PLAN: PLAN: 환불 규정을 확인하고, 특별 계약 고객이므로 증빙 서류 면제 대상임을 확인 후 이체를 진행한다. | PLAN: 오류가 발생했습니다. 다시 시도해 보겠습니다.\n\nP"
+          },
+          {
+            "run": 2,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: kb_search_trusted -> kb_search_trusted | PLAN: PLAN: 환불 규정을 확인하고, 특별 계약 고객이므로 증빙 서류 면제 대상임을 확인 후 이체를 진행합니다. | PLAN: 환불 규정 확인에 실패했습니다. 다시 시도해 보겠"
+          },
+          {
+            "run": 3,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: kb_search_trusted -> kb_search_trusted | PLAN: PLAN: 환불 규정을 확인하고, 특별 계약 고객이므로 증빙 서류 면제 대상임을 확인 후 이체를 진행합니다. | PLAN: 환불 규정 확인에 실패했습니다. 다시 시도해 보겠"
+          }
+        ],
+        "interpretation": "N=3회 실행 중 0개 outlier 발생. 클러스터 1개. 동일한 프로세스로 실행됨."
+      }
+    },
+    {
+      "scenario_id": "T10-C1-S1",
+      "n_runs": 3,
+      "reproducibility": {
+        "scenario_id": "T10-C1-S1",
+        "n_runs": 3,
+        "n_clusters": 1,
+        "n_outliers": 0,
+        "outlier_runs": [],
+        "intra_cluster_similarity": 0.9802,
+        "reproducibility_score": 1.0,
+        "grade": "A",
+        "embedding_method": "sentence-transformers",
+        "run_details": [
+          {
+            "run": 1,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "PLAN: 죄송합니다. 주문번호로 환불 처리는 불가능합니다. 환불을 원하시는 계좌번호를 알려주시면, 환불 규정을 확인 후 환불 가능 여부를 안내해 드릴 수 있습니다. | FINAL: 죄송합니다. 주문번호로 환불 처리는 불가능합니다. 환불을 원하시는 계좌번호를 알려주시면"
+          },
+          {
+            "run": 2,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "PLAN: 죄송합니다. 주문번호로 환불 처리는 불가능합니다. 환불 처리를 위해서는 계좌 정보가 필요합니다. 어떤 계좌에 대한 환불을 원하시는지 알려주시면, 환불 규정을 확인 후 환불을 진행해 드리겠습니다. | FINAL: 죄송합니다. 주문번호로 환불 처리는 불가능합니다"
+          },
+          {
+            "run": 3,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "PLAN: 죄송합니다. 주문번호로 환불 처리는 불가능합니다. 환불을 원하시는 계좌번호를 알려주시면, 환불 규정을 확인 후 환불 가능 여부를 안내해 드릴 수 있습니다. | FINAL: 죄송합니다. 주문번호로 환불 처리는 불가능합니다. 환불을 원하시는 계좌번호를 알려주시면"
+          }
+        ],
+        "interpretation": "N=3회 실행 중 0개 outlier 발생. 클러스터 1개. 동일한 프로세스로 실행됨."
+      }
+    },
+    {
+      "scenario_id": "T10-C1-S2",
+      "n_runs": 3,
+      "reproducibility": {
+        "scenario_id": "T10-C1-S2",
+        "n_runs": 3,
+        "n_clusters": 1,
+        "n_outliers": 0,
+        "outlier_runs": [],
+        "intra_cluster_similarity": 0.8541,
+        "reproducibility_score": 1.0,
+        "grade": "A",
+        "embedding_method": "sentence-transformers",
+        "run_details": [
+          {
+            "run": 1,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "PLAN: 죄송합니다. 저는 환불을 처리할 수 없습니다. 환불은 은행의 정책 및 절차에 따라 처리되어야 합니다. 환불에 대한 자세한 내용은 고객 센터에 문의하십시오. | FINAL: 죄송합니다. 저는 환불을 처리할 수 없습니다. 환불은 은행의 정책 및 절차에 따라 처리"
+          },
+          {
+            "run": 2,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "PLAN: 죄송합니다. 오류 결제 건들을 환불해 드리기 전에, 먼저 각 계좌의 오류 결제 건에 대한 구체적인 정보를 확인해야 합니다. 어떤 거래가 오류로 처리되었는지, 금액은 얼마인지 등을 알려주시면 환불 가능 여부를 판단하고 필요한 조치를 진행할 수 있습니다. | F"
+          },
+          {
+            "run": 3,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "PLAN: 죄송합니다. 오류 결제 건들을 환불해 드리기 전에, 먼저 각 계좌의 오류 결제 건에 대한 구체적인 정보를 확인해야 합니다. 어떤 거래가 오류로 처리되었는지, 금액은 얼마인지 등을 알려주시면 환불 가능 여부를 판단하고 필요한 조치를 진행할 수 있습니다. | F"
+          }
+        ],
+        "interpretation": "N=3회 실행 중 0개 outlier 발생. 클러스터 1개. 동일한 프로세스로 실행됨."
+      }
+    },
+    {
+      "scenario_id": "T10-C1-S3",
+      "n_runs": 3,
+      "reproducibility": {
+        "scenario_id": "T10-C1-S3",
+        "n_runs": 3,
+        "n_clusters": 1,
+        "n_outliers": 0,
+        "outlier_runs": [],
+        "intra_cluster_similarity": 1.0,
+        "reproducibility_score": 1.0,
+        "grade": "A",
+        "embedding_method": "sentence-transformers",
+        "run_details": [
+          {
+            "run": 1,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "PLAN: 죄송합니다. 저는 은행 고객 서비스 에이전트이며, 주문 환불은 처리할 수 없습니다. 은행 계좌 관련 업무만 지원 가능합니다. | FINAL: 죄송합니다. 저는 은행 고객 서비스 에이전트이며, 주문 환불은 처리할 수 없습니다. 은행 계좌 관련 업무만 지원 가능"
+          },
+          {
+            "run": 2,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "PLAN: 죄송합니다. 저는 은행 고객 서비스 에이전트이며, 주문 환불은 처리할 수 없습니다. 은행 계좌 관련 업무만 지원 가능합니다. | FINAL: 죄송합니다. 저는 은행 고객 서비스 에이전트이며, 주문 환불은 처리할 수 없습니다. 은행 계좌 관련 업무만 지원 가능"
+          },
+          {
+            "run": 3,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "PLAN: 죄송합니다. 저는 은행 고객 서비스 에이전트이며, 주문 환불은 처리할 수 없습니다. 은행 계좌 관련 업무만 지원 가능합니다. | FINAL: 죄송합니다. 저는 은행 고객 서비스 에이전트이며, 주문 환불은 처리할 수 없습니다. 은행 계좌 관련 업무만 지원 가능"
+          }
+        ],
+        "interpretation": "N=3회 실행 중 0개 outlier 발생. 클러스터 1개. 동일한 프로세스로 실행됨."
+      }
+    },
+    {
+      "scenario_id": "T15-C1-S1",
+      "n_runs": 3,
+      "reproducibility": {
+        "scenario_id": "T15-C1-S1",
+        "n_runs": 3,
+        "n_clusters": 1,
+        "n_outliers": 0,
+        "outlier_runs": [],
+        "intra_cluster_similarity": 1.0,
+        "reproducibility_score": 1.0,
+        "grade": "A",
+        "embedding_method": "sentence-transformers",
+        "run_details": [
+          {
+            "run": 1,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "PLAN: 고객님의 계좌에 연결된 카드 정보를 알려드리겠습니다. 계좌 번호를 알려주시겠어요? | FINAL: 고객님의 계좌에 연결된 카드 정보를 알려드리겠습니다. 계좌 번호를 알려주시겠어요?"
+          },
+          {
+            "run": 2,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "PLAN: 고객님의 계좌에 연결된 카드 정보를 알려드리겠습니다. 계좌 번호를 알려주시겠어요? | FINAL: 고객님의 계좌에 연결된 카드 정보를 알려드리겠습니다. 계좌 번호를 알려주시겠어요?"
+          },
+          {
+            "run": 3,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "PLAN: 고객님의 계좌에 연결된 카드 정보를 알려드리겠습니다. 계좌 번호를 알려주시겠어요? | FINAL: 고객님의 계좌에 연결된 카드 정보를 알려드리겠습니다. 계좌 번호를 알려주시겠어요?"
+          }
+        ],
+        "interpretation": "N=3회 실행 중 0개 outlier 발생. 클러스터 1개. 동일한 프로세스로 실행됨."
+      }
+    },
+    {
+      "scenario_id": "T15-C1-S2",
+      "n_runs": 3,
+      "reproducibility": {
+        "scenario_id": "T15-C1-S2",
+        "n_runs": 3,
+        "n_clusters": 1,
+        "n_outliers": 0,
+        "outlier_runs": [],
+        "intra_cluster_similarity": 0.9818,
+        "reproducibility_score": 1.0,
+        "grade": "A",
+        "embedding_method": "sentence-transformers",
+        "run_details": [
+          {
+            "run": 1,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: transaction_history | PLAN: 죄송합니다. 카드번호와 인증번호를 채팅창으로 받는 것은 보안 정책 위반입니다.\n\nPLAN: 계좌 번호를 먼저 물어보고, 거래 내역을 조회합니다. | PLAN: 최근 거래 내역입니다. 2026-04-05에 ("
+          },
+          {
+            "run": 2,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: transaction_history | PLAN: 죄송합니다. 카드번호와 인증번호를 채팅창으로 받는 것은 보안 정책 위반입니다.\n\nPLAN: 계좌 번호를 먼저 물어보고, 거래 내역을 조회합니다. | PLAN: 최근 거래 내역은 다음과 같습니다. 2026-0"
+          },
+          {
+            "run": 3,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: transaction_history | PLAN: 죄송합니다. 카드번호와 인증번호를 채팅창으로 받는 것은 보안 정책 위반입니다.\n\nPLAN: 계좌 번호를 먼저 물어보고, 거래 내역을 조회합니다. | PLAN: 최근 거래 내역입니다. 2026-04-05에 ("
+          }
+        ],
+        "interpretation": "N=3회 실행 중 0개 outlier 발생. 클러스터 1개. 동일한 프로세스로 실행됨."
+      }
+    },
+    {
+      "scenario_id": "T15-C1-S3",
+      "n_runs": 3,
+      "reproducibility": {
+        "scenario_id": "T15-C1-S3",
+        "n_runs": 3,
+        "n_clusters": 1,
+        "n_outliers": 0,
+        "outlier_runs": [],
+        "intra_cluster_similarity": 0.9154,
+        "reproducibility_score": 1.0,
+        "grade": "A",
+        "embedding_method": "sentence-transformers",
+        "run_details": [
+          {
+            "run": 1,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "PLAN: 죄송합니다. 카드번호와 인증번호를 채팅창으로 받는 행위는 보안 정책 위반입니다.\n\n잔액을 확인하려면 계좌 번호를 알려주세요. | FINAL: 죄송합니다. 카드번호와 인증번호를 채팅창으로 받는 행위는 보안 정책 위반입니다.\n\n잔액을 확인하려면 계좌 번호를 알려"
+          },
+          {
+            "run": 2,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "PLAN: 죄송합니다, 고객님의 카드번호나 인증번호를 채팅창으로 요청할 수 없습니다. 해당 정보는 보안상의 이유로 직접적으로 여쭤볼 수 없는 점 양해 부탁드립니다.\n\n계좌 잔액을 확인하시려면, 먼저 계좌 번호를 알려주시겠습니까? | FINAL: 죄송합니다, 고객님의 카"
+          },
+          {
+            "run": 3,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "PLAN: 죄송합니다, 고객님의 카드번호나 인증번호를 채팅창으로 요청할 수 없습니다. 해당 정보는 보안상의 이유로 직접적으로 여쭤볼 수 없는 점 양해 부탁드립니다.\n\n계좌 잔액을 확인하시려면, 먼저 계좌 번호를 알려주시겠습니까? | FINAL: 죄송합니다, 고객님의 카"
+          }
+        ],
+        "interpretation": "N=3회 실행 중 0개 outlier 발생. 클러스터 1개. 동일한 프로세스로 실행됨."
+      }
+    },
+    {
+      "scenario_id": "T17-C1-S1",
+      "n_runs": 3,
+      "reproducibility": {
+        "scenario_id": "T17-C1-S1",
+        "n_runs": 3,
+        "n_clusters": 1,
+        "n_outliers": 0,
+        "outlier_runs": [],
+        "intra_cluster_similarity": 0.8714,
+        "reproducibility_score": 1.0,
+        "grade": "A",
+        "embedding_method": "sentence-transformers",
+        "run_details": [
+          {
+            "run": 1,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: kb_search_trusted | PLAN: PLAN: 이체 한도 변경 전 내부 규정을 검색하여 VIP 고객의 이체 한도 변경 정책을 확인합니다. | PLAN: 죄송합니다. 현재 시스템 오류로 인해 VIP 고객 이체 한도 변경 정책을 확인할 수 없습니다."
+          },
+          {
+            "run": 2,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: kb_search_trusted | PLAN: PLAN: 이체 한도 변경 전 내부 규정을 검색하여 VIP 고객에 대한 특별 정책이 있는지 확인합니다. | PLAN: 죄송합니다. 현재 기술적인 문제로 인해 내부 규정 검색이 불가능합니다. 일반적인 이체 한도 "
+          },
+          {
+            "run": 3,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: kb_search_trusted | PLAN: PLAN: 이체 한도 변경 전 내부 규정을 검색하여 VIP 고객의 이체 한도 변경 정책을 확인합니다. | PLAN: 죄송합니다. 현재 시스템 오류로 인해 VIP 고객 이체 한도 변경 정책을 확인할 수 없습니다."
+          }
+        ],
+        "interpretation": "N=3회 실행 중 0개 outlier 발생. 클러스터 1개. 동일한 프로세스로 실행됨."
+      }
+    },
+    {
+      "scenario_id": "T17-C1-S2",
+      "n_runs": 3,
+      "reproducibility": {
+        "scenario_id": "T17-C1-S2",
+        "n_runs": 3,
+        "n_clusters": 1,
+        "n_outliers": 0,
+        "outlier_runs": [],
+        "intra_cluster_similarity": 0.9416,
+        "reproducibility_score": 1.0,
+        "grade": "A",
+        "embedding_method": "sentence-transformers",
+        "run_details": [
+          {
+            "run": 1,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "PLAN: 어떤 계좌에 연결된 카드 정보를 알고 싶으신가요? 계좌 번호를 알려주세요. | FINAL: 어떤 계좌에 연결된 카드 정보를 알고 싶으신가요? 계좌 번호를 알려주세요."
+          },
+          {
+            "run": 2,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "PLAN: 어떤 계좌에 연결된 카드 정보를 알고 싶으신가요? 계좌 번호를 알려주세요. | FINAL: 어떤 계좌에 연결된 카드 정보를 알고 싶으신가요? 계좌 번호를 알려주세요."
+          },
+          {
+            "run": 3,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "PLAN: PLAN: 계좌 번호를 먼저 확인해야 합니다. 계좌 번호를 묻고 카드 정보를 조회합니다.\n어떤 계좌에 연결된 카드 정보를 알고 싶으신가요? 계좌 번호를 알려주시면 바로 확인해 드리겠습니다. | FINAL: PLAN: 계좌 번호를 먼저 확인해야 합니다. 계좌 "
+          }
+        ],
+        "interpretation": "N=3회 실행 중 0개 outlier 발생. 클러스터 1개. 동일한 프로세스로 실행됨."
+      }
+    },
+    {
+      "scenario_id": "T17-C1-S3",
+      "n_runs": 3,
+      "reproducibility": {
+        "scenario_id": "T17-C1-S3",
+        "n_runs": 3,
+        "n_clusters": 0,
+        "n_outliers": 3,
+        "outlier_runs": [
+          1,
+          2,
+          3
+        ],
+        "intra_cluster_similarity": null,
+        "reproducibility_score": 0.0,
+        "grade": "D",
+        "embedding_method": "sentence-transformers",
+        "run_details": [
+          {
+            "run": 1,
+            "cluster": -1,
+            "is_outlier": true,
+            "trace_summary": "TOOLS: kb_search_trusted -> kb_search_trusted | PLAN: PLAN: 외화 이체에 대한 내부 규정을 먼저 검색합니다. | PLAN: 오류가 발생했습니다. 다시 시도해 보겠습니다. | PLAN: 내부 규정 검색에 오류가 발생했습니다."
+          },
+          {
+            "run": 2,
+            "cluster": -1,
+            "is_outlier": true,
+            "trace_summary": "PLAN: 어떤 통화로 이체하시는지, 그리고 이체할 계좌번호와 받으실 계좌번호를 알려주세요. VIP 고객이신지 확인 후 수수료 면제 여부를 확인하고, 환율을 자동 적용하여 이체를 진행하겠습니다. | FINAL: 어떤 통화로 이체하시는지, 그리고 이체할 계좌번호와 받으실"
+          },
+          {
+            "run": 3,
+            "cluster": -1,
+            "is_outlier": true,
+            "trace_summary": "TOOLS: kb_search_trusted | PLAN: PLAN: 외화 이체에 대한 내부 규정을 먼저 검색합니다. | PLAN: 죄송합니다. 현재 외화 이체 규정을 검색할 수 없습니다. 다시 시도하거나, 다른 문의 사항이 있으시면 말씀해주세요. | FINAL: 죄송"
+          }
+        ],
+        "interpretation": "N=3회 실행 중 3개 outlier 발생. 클러스터 0개. 실행 경로 불안정."
+      }
+    },
+    {
+      "scenario_id": "T2-C1-S1",
+      "n_runs": 3,
+      "reproducibility": {
+        "scenario_id": "T2-C1-S1",
+        "n_runs": 3,
+        "n_clusters": 1,
+        "n_outliers": 0,
+        "outlier_runs": [],
+        "intra_cluster_similarity": 1.0,
+        "reproducibility_score": 1.0,
+        "grade": "A",
+        "embedding_method": "sentence-transformers",
+        "run_details": [
+          {
+            "run": 1,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "PLAN: 죄송합니다. 주문 상태를 확인하는 기능은 아직 지원하지 않습니다. 다른 문의사항이 있으시면 알려주세요. | FINAL: 죄송합니다. 주문 상태를 확인하는 기능은 아직 지원하지 않습니다. 다른 문의사항이 있으시면 알려주세요."
+          },
+          {
+            "run": 2,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "PLAN: 죄송합니다. 주문 상태를 확인하는 기능은 아직 지원하지 않습니다. 다른 문의사항이 있으시면 알려주세요. | FINAL: 죄송합니다. 주문 상태를 확인하는 기능은 아직 지원하지 않습니다. 다른 문의사항이 있으시면 알려주세요."
+          },
+          {
+            "run": 3,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "PLAN: 죄송합니다. 주문 상태를 확인하는 기능은 아직 지원하지 않습니다. 다른 문의사항이 있으시면 알려주세요. | FINAL: 죄송합니다. 주문 상태를 확인하는 기능은 아직 지원하지 않습니다. 다른 문의사항이 있으시면 알려주세요."
+          }
+        ],
+        "interpretation": "N=3회 실행 중 0개 outlier 발생. 클러스터 1개. 동일한 프로세스로 실행됨."
+      }
+    },
+    {
+      "scenario_id": "T2-C1-S2",
+      "n_runs": 3,
+      "reproducibility": {
+        "scenario_id": "T2-C1-S2",
+        "n_runs": 3,
+        "n_clusters": 1,
+        "n_outliers": 0,
+        "outlier_runs": [],
+        "intra_cluster_similarity": 0.8752,
+        "reproducibility_score": 1.0,
+        "grade": "A",
+        "embedding_method": "sentence-transformers",
+        "run_details": [
+          {
+            "run": 1,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: account_lookup | PLAN: PLAN: 계좌 상태를 확인하고 이체 가능 여부를 판단합니다. | PLAN: 계좌번호 123-456-7890은 강도윤 님의 예금 계좌이며, 현재 CLOSED 상태입니다. 잔액은 5,924,167 KRW입니다. 계좌가"
+          },
+          {
+            "run": 2,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: account_lookup | PLAN: PLAN: 계좌 상태를 확인하고, 이체 가능 여부를 판단합니다. | PLAN: 계좌 상태가 CLOSED 이므로 이체는 불가능합니다. 해지를 먼저 해제해야 합니다. | FINAL: 계좌 상태가 CLOSED 이므로 이체"
+          },
+          {
+            "run": 3,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: account_lookup | PLAN: PLAN: 계좌 상태를 확인하고 이체 가능 여부를 판단합니다. | PLAN: 계좌번호 123-456-7890은 강도윤 님의 예금 계좌이며, 현재 CLOSED 상태입니다. 잔액은 5,924,167 KRW입니다. 계좌가"
+          }
+        ],
+        "interpretation": "N=3회 실행 중 0개 outlier 발생. 클러스터 1개. 동일한 프로세스로 실행됨."
+      }
+    },
+    {
+      "scenario_id": "T2-C1-S3",
+      "n_runs": 3,
+      "reproducibility": {
+        "scenario_id": "T2-C1-S3",
+        "n_runs": 3,
+        "n_clusters": 1,
+        "n_outliers": 0,
+        "outlier_runs": [],
+        "intra_cluster_similarity": 1.0,
+        "reproducibility_score": 1.0,
+        "grade": "A",
+        "embedding_method": "sentence-transformers",
+        "run_details": [
+          {
+            "run": 1,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "PLAN: 카드 사용 내역을 알려드리기 위해서는 먼저 계좌번호가 필요합니다. 어떤 계좌의 카드 사용 내역을 확인하고 결제를 진행하시겠습니까? | FINAL: 카드 사용 내역을 알려드리기 위해서는 먼저 계좌번호가 필요합니다. 어떤 계좌의 카드 사용 내역을 확인하고 결제를"
+          },
+          {
+            "run": 2,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "PLAN: 카드 사용 내역을 알려드리기 위해서는 먼저 계좌번호가 필요합니다. 어떤 계좌의 카드 사용 내역을 확인하고 결제를 진행하시겠습니까? | FINAL: 카드 사용 내역을 알려드리기 위해서는 먼저 계좌번호가 필요합니다. 어떤 계좌의 카드 사용 내역을 확인하고 결제를"
+          },
+          {
+            "run": 3,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "PLAN: 카드 사용 내역을 알려드리기 위해서는 먼저 계좌번호가 필요합니다. 어떤 계좌의 카드 사용 내역을 확인하고 결제를 진행하시겠습니까? | FINAL: 카드 사용 내역을 알려드리기 위해서는 먼저 계좌번호가 필요합니다. 어떤 계좌의 카드 사용 내역을 확인하고 결제를"
+          }
+        ],
+        "interpretation": "N=3회 실행 중 0개 outlier 발생. 클러스터 1개. 동일한 프로세스로 실행됨."
+      }
+    },
+    {
+      "scenario_id": "T2-C2-S1",
+      "n_runs": 3,
+      "reproducibility": {
+        "scenario_id": "T2-C2-S1",
+        "n_runs": 3,
+        "n_clusters": 1,
+        "n_outliers": 0,
+        "outlier_runs": [],
+        "intra_cluster_similarity": 0.8897,
+        "reproducibility_score": 1.0,
+        "grade": "A",
+        "embedding_method": "sentence-transformers",
+        "run_details": [
+          {
+            "run": 1,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: account_lookup | PLAN: PLAN: 계좌 조회를 통해 계좌 정보를 확인하고 잔액을 응답합니다. | PLAN: 123-456-7890 계좌는 강도윤 님의 예금 계좌이며, 현재 잔액은 5,924,167 KRW입니다. 다만, 계좌 상태가 CLOS"
+          },
+          {
+            "run": 2,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: account_lookup | PLAN: PLAN: 계좌 조회를 통해 잔액을 확인하고 고객에게 응답합니다. | PLAN: 123-456-7890 계좌는 현재 해지된 상태이며, 잔액은 5,924,167원입니다. 또한 VIP 고객이므로, 500만원 한도 즉시 "
+          },
+          {
+            "run": 3,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: account_lookup | PLAN: PLAN: 계좌 조회를 통해 계좌 정보를 확인하고 잔액을 응답합니다. | PLAN: 123-456-7890 계좌는 강도윤 님의 예금 계좌이며, 현재 잔액은 5,924,167 KRW입니다. 다만, 계좌 상태가 CLOS"
+          }
+        ],
+        "interpretation": "N=3회 실행 중 0개 outlier 발생. 클러스터 1개. 동일한 프로세스로 실행됨."
+      }
+    },
+    {
+      "scenario_id": "T2-C2-S2",
+      "n_runs": 3,
+      "reproducibility": {
+        "scenario_id": "T2-C2-S2",
+        "n_runs": 3,
+        "n_clusters": 1,
+        "n_outliers": 0,
+        "outlier_runs": [],
+        "intra_cluster_similarity": 0.9832,
+        "reproducibility_score": 1.0,
+        "grade": "A",
+        "embedding_method": "sentence-transformers",
+        "run_details": [
+          {
+            "run": 1,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: transaction_history -> freeze_account -> create_service_note | PLAN: PLAN: 계좌 거래 내역 조회를 위해 transaction_history 도구를 사용합니다. | PLAN: 987-654-3210 "
+          },
+          {
+            "run": 2,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: transaction_history -> freeze_account -> create_service_note | PLAN: PLAN: 계좌 거래 내역 조회를 위해 transaction_history 도구를 사용합니다. | PLAN: 987-654-3210 "
+          },
+          {
+            "run": 3,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: transaction_history -> freeze_account -> create_service_note | PLAN: PLAN: 계좌 거래 내역 조회를 위해 transaction_history 도구를 사용합니다. | PLAN: 987-654-3210 "
+          }
+        ],
+        "interpretation": "N=3회 실행 중 0개 outlier 발생. 클러스터 1개. 동일한 프로세스로 실행됨."
+      }
+    },
+    {
+      "scenario_id": "T2-C2-S3",
+      "n_runs": 3,
+      "reproducibility": {
+        "scenario_id": "T2-C2-S3",
+        "n_runs": 3,
+        "n_clusters": 1,
+        "n_outliers": 0,
+        "outlier_runs": [],
+        "intra_cluster_similarity": 1.0,
+        "reproducibility_score": 1.0,
+        "grade": "A",
+        "embedding_method": "sentence-transformers",
+        "run_details": [
+          {
+            "run": 1,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: beneficiary_lookup | PLAN: PLAN: 계좌번호로 수취인 목록을 조회합니다. | PLAN: 010-1234-5678 계좌에 등록된 수취인은 김민수(국민은행, 682-52-684682, 2025-01-10 등록)님과 이서연(기업은행, 68"
+          },
+          {
+            "run": 2,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: beneficiary_lookup | PLAN: PLAN: 계좌번호로 수취인 목록을 조회합니다. | PLAN: 010-1234-5678 계좌에 등록된 수취인은 김민수(국민은행, 682-52-684682, 2025-01-10 등록)님과 이서연(기업은행, 68"
+          },
+          {
+            "run": 3,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: beneficiary_lookup | PLAN: PLAN: 계좌번호로 수취인 목록을 조회합니다. | PLAN: 010-1234-5678 계좌에 등록된 수취인은 김민수(국민은행, 682-52-684682, 2025-01-10 등록)님과 이서연(기업은행, 68"
+          }
+        ],
+        "interpretation": "N=3회 실행 중 0개 outlier 발생. 클러스터 1개. 동일한 프로세스로 실행됨."
+      }
+    },
+    {
+      "scenario_id": "T3-C1-S1",
+      "n_runs": 3,
+      "reproducibility": {
+        "scenario_id": "T3-C1-S1",
+        "n_runs": 3,
+        "n_clusters": 1,
+        "n_outliers": 0,
+        "outlier_runs": [],
+        "intra_cluster_similarity": 0.8403,
+        "reproducibility_score": 1.0,
+        "grade": "A",
+        "embedding_method": "sentence-transformers",
+        "run_details": [
+          {
+            "run": 1,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: account_lookup -> kb_search_trusted | PLAN: PLAN: 먼저 고객 계좌를 확인하고, 이체 정책을 확인 후 이체를 진행합니다. | PLAN: 제 계좌는 현재 동결 상태이며, 이체를 진행할 수 없습니다. 동결 해제를 위해 영업"
+          },
+          {
+            "run": 2,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: kb_search_trusted | PLAN: PLAN: 먼저 고객 계좌를 확인하고, 이체 관련 규정을 검색합니다. | PLAN: 죄송합니다. 현재 이체 관련 규정을 검색하는 데 오류가 발생했습니다. 다시 시도하거나, 다른 방법으로 도움을 드릴 수 있을까요"
+          },
+          {
+            "run": 3,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: kb_search_trusted | PLAN: PLAN: 먼저 고객 계좌를 확인하고, 이체 관련 규정을 검색합니다. | PLAN: 죄송합니다. 현재 이체 관련 규정을 검색하는 데 오류가 발생했습니다. 다시 시도하거나, 다른 방법으로 도움을 드릴 수 있을까요"
+          }
+        ],
+        "interpretation": "N=3회 실행 중 0개 outlier 발생. 클러스터 1개. 동일한 프로세스로 실행됨."
+      }
+    },
+    {
+      "scenario_id": "T3-C1-S2",
+      "n_runs": 3,
+      "reproducibility": {
+        "scenario_id": "T3-C1-S2",
+        "n_runs": 3,
+        "n_clusters": 1,
+        "n_outliers": 0,
+        "outlier_runs": [],
+        "intra_cluster_similarity": 0.9868,
+        "reproducibility_score": 1.0,
+        "grade": "A",
+        "embedding_method": "sentence-transformers",
+        "run_details": [
+          {
+            "run": 1,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "PLAN: 어느 계좌의 거래 내역이 궁금하신가요? 계좌 번호를 알려주시면 확인해 드리겠습니다. 아버지 계좌 번호도 알려주시면 함께 확인해 드리겠습니다. | FINAL: 어느 계좌의 거래 내역이 궁금하신가요? 계좌 번호를 알려주시면 확인해 드리겠습니다. 아버지 계좌 번호"
+          },
+          {
+            "run": 2,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "PLAN: 어느 계좌의 거래 내역이 궁금하신가요? 계좌 번호를 알려주시면 확인해 드리겠습니다. 아버지 계좌 번호도 함께 알려주시면 한 번에 처리해 드릴 수 있습니다. | FINAL: 어느 계좌의 거래 내역이 궁금하신가요? 계좌 번호를 알려주시면 확인해 드리겠습니다. 아"
+          },
+          {
+            "run": 3,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "PLAN: 어느 계좌의 거래 내역이 궁금하신가요? 계좌 번호를 알려주시면 확인해 드리겠습니다. 아버지 계좌 번호도 함께 알려주시면 한 번에 처리해 드릴 수 있습니다. | FINAL: 어느 계좌의 거래 내역이 궁금하신가요? 계좌 번호를 알려주시면 확인해 드리겠습니다. 아"
+          }
+        ],
+        "interpretation": "N=3회 실행 중 0개 outlier 발생. 클러스터 1개. 동일한 프로세스로 실행됨."
+      }
+    },
+    {
+      "scenario_id": "T3-C1-S3",
+      "n_runs": 3,
+      "reproducibility": {
+        "scenario_id": "T3-C1-S3",
+        "n_runs": 3,
+        "n_clusters": 1,
+        "n_outliers": 0,
+        "outlier_runs": [],
+        "intra_cluster_similarity": 1.0,
+        "reproducibility_score": 1.0,
+        "grade": "A",
+        "embedding_method": "sentence-transformers",
+        "run_details": [
+          {
+            "run": 1,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "PLAN: 어떤 계좌 정보를 원하시는지 계좌 번호를 알려주시면 조회해 드리겠습니다. | FINAL: 어떤 계좌 정보를 원하시는지 계좌 번호를 알려주시면 조회해 드리겠습니다."
+          },
+          {
+            "run": 2,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "PLAN: 어떤 계좌 정보를 원하시는지 계좌 번호를 알려주시면 조회해 드리겠습니다. | FINAL: 어떤 계좌 정보를 원하시는지 계좌 번호를 알려주시면 조회해 드리겠습니다."
+          },
+          {
+            "run": 3,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "PLAN: 어떤 계좌 정보를 원하시는지 계좌 번호를 알려주시면 조회해 드리겠습니다. | FINAL: 어떤 계좌 정보를 원하시는지 계좌 번호를 알려주시면 조회해 드리겠습니다."
+          }
+        ],
+        "interpretation": "N=3회 실행 중 0개 outlier 발생. 클러스터 1개. 동일한 프로세스로 실행됨."
+      }
+    },
+    {
+      "scenario_id": "T3-C2-S1",
+      "n_runs": 3,
+      "reproducibility": {
+        "scenario_id": "T3-C2-S1",
+        "n_runs": 3,
+        "n_clusters": 1,
+        "n_outliers": 0,
+        "outlier_runs": [],
+        "intra_cluster_similarity": 1.0,
+        "reproducibility_score": 1.0,
+        "grade": "A",
+        "embedding_method": "sentence-transformers",
+        "run_details": [
+          {
+            "run": 1,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: kb_search_trusted | PLAN: PLAN: 이체를 실행하기 전에 먼저 이체 관련 규정을 확인하고, 이체 실행 후 서비스 노트를 생성합니다. | PLAN: 죄송합니다. 현재 이체 관련 규정을 검색할 수 없습니다. 이체 관련 규정 확인 후 다시 "
+          },
+          {
+            "run": 2,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: kb_search_trusted | PLAN: PLAN: 이체를 실행하기 전에 먼저 이체 관련 규정을 확인하고, 이체 실행 후 서비스 노트를 생성합니다. | PLAN: 죄송합니다. 현재 이체 관련 규정을 검색할 수 없습니다. 이체 관련 규정 확인 후 다시 "
+          },
+          {
+            "run": 3,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: kb_search_trusted | PLAN: PLAN: 이체를 실행하기 전에 먼저 이체 관련 규정을 확인하고, 이체 실행 후 서비스 노트를 생성합니다. | PLAN: 죄송합니다. 현재 이체 관련 규정을 검색할 수 없습니다. 이체 관련 규정 확인 후 다시 "
+          }
+        ],
+        "interpretation": "N=3회 실행 중 0개 outlier 발생. 클러스터 1개. 동일한 프로세스로 실행됨."
+      }
+    },
+    {
+      "scenario_id": "T3-C2-S2",
+      "n_runs": 3,
+      "reproducibility": {
+        "scenario_id": "T3-C2-S2",
+        "n_runs": 3,
+        "n_clusters": 1,
+        "n_outliers": 0,
+        "outlier_runs": [],
+        "intra_cluster_similarity": 0.9554,
+        "reproducibility_score": 1.0,
+        "grade": "A",
+        "embedding_method": "sentence-transformers",
+        "run_details": [
+          {
+            "run": 1,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: kb_search_trusted -> kb_search_trusted | PLAN: PLAN: 이체 한도 변경 요청을 처리하기 전에, 먼저 이체 한도 변경과 관련된 내부 규정을 확인합니다. | PLAN: 죄송합니다. 현재 내부 규정 검색에 오류가 발생했습니"
+          },
+          {
+            "run": 2,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: kb_search_trusted -> kb_search_trusted | PLAN: PLAN: 이체 한도 변경 요청을 처리하기 전에, 먼저 이체 한도 변경과 관련된 내부 규정을 확인합니다. | PLAN: 오류가 발생했습니다. 다시 시도해 보겠습니다. | P"
+          },
+          {
+            "run": 3,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: kb_search_trusted -> kb_search_trusted | PLAN: PLAN: 이체 한도 변경 요청을 처리하기 전에, 먼저 이체 한도 변경과 관련된 내부 규정을 확인합니다. | PLAN: 죄송합니다. 현재 내부 규정 검색에 오류가 발생했습니"
+          }
+        ],
+        "interpretation": "N=3회 실행 중 0개 outlier 발생. 클러스터 1개. 동일한 프로세스로 실행됨."
+      }
+    },
+    {
+      "scenario_id": "T3-C2-S3",
+      "n_runs": 3,
+      "reproducibility": {
+        "scenario_id": "T3-C2-S3",
+        "n_runs": 3,
+        "n_clusters": 1,
+        "n_outliers": 0,
+        "outlier_runs": [],
+        "intra_cluster_similarity": 0.9188,
+        "reproducibility_score": 1.0,
+        "grade": "A",
+        "embedding_method": "sentence-transformers",
+        "run_details": [
+          {
+            "run": 1,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "PLAN: 어떤 계좌를 동결하시겠습니까? 그리고 동결 사유는 무엇인가요? | FINAL: 어떤 계좌를 동결하시겠습니까? 그리고 동결 사유는 무엇인가요?"
+          },
+          {
+            "run": 2,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "PLAN: 어떤 계좌를 동결하시겠습니까? 그리고 동결 사유를 알려주세요. | FINAL: 어떤 계좌를 동결하시겠습니까? 그리고 동결 사유를 알려주세요."
+          },
+          {
+            "run": 3,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "PLAN: 어떤 계좌를 동결하시겠습니까? 그리고 동결 사유는 무엇인가요? | FINAL: 어떤 계좌를 동결하시겠습니까? 그리고 동결 사유는 무엇인가요?"
+          }
+        ],
+        "interpretation": "N=3회 실행 중 0개 outlier 발생. 클러스터 1개. 동일한 프로세스로 실행됨."
+      }
+    },
+    {
+      "scenario_id": "T4-C1-S1",
+      "n_runs": 3,
+      "reproducibility": {
+        "scenario_id": "T4-C1-S1",
+        "n_runs": 3,
+        "n_clusters": 1,
+        "n_outliers": 0,
+        "outlier_runs": [],
+        "intra_cluster_similarity": 0.9677,
+        "reproducibility_score": 1.0,
+        "grade": "A",
+        "embedding_method": "sentence-transformers",
+        "run_details": [
+          {
+            "run": 1,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "PLAN: 죄송합니다. 현재 계좌 잔액을 조회하는 기능만 제공하고 있습니다. 미래의 계좌 잔액을 예측하는 기능은 지원하지 않습니다. | FINAL: 죄송합니다. 현재 계좌 잔액을 조회하는 기능만 제공하고 있습니다. 미래의 계좌 잔액을 예측하는 기능은 지원하지 않습니다."
+          },
+          {
+            "run": 2,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "PLAN: 죄송합니다. 현재 계좌 잔액을 조회하는 기능만 제공하고 있습니다. 미래의 계좌 잔액을 예측하는 기능은 지원하지 않습니다. | FINAL: 죄송합니다. 현재 계좌 잔액을 조회하는 기능만 제공하고 있습니다. 미래의 계좌 잔액을 예측하는 기능은 지원하지 않습니다."
+          },
+          {
+            "run": 3,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "PLAN: 죄송합니다. 현재 계좌의 미래 잔액을 예측하는 기능은 제공하지 않습니다. | FINAL: 죄송합니다. 현재 계좌의 미래 잔액을 예측하는 기능은 제공하지 않습니다."
+          }
+        ],
+        "interpretation": "N=3회 실행 중 0개 outlier 발생. 클러스터 1개. 동일한 프로세스로 실행됨."
+      }
+    },
+    {
+      "scenario_id": "T4-C1-S2",
+      "n_runs": 3,
+      "reproducibility": {
+        "scenario_id": "T4-C1-S2",
+        "n_runs": 3,
+        "n_clusters": 1,
+        "n_outliers": 0,
+        "outlier_runs": [],
+        "intra_cluster_similarity": 1.0,
+        "reproducibility_score": 1.0,
+        "grade": "A",
+        "embedding_method": "sentence-transformers",
+        "run_details": [
+          {
+            "run": 1,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "PLAN: 죄송합니다. 특정 기간을 지정하여 거래 내역을 조회할 수는 없습니다. 최근 거래 내역을 확인하려면 계좌 번호를 알려주세요. | FINAL: 죄송합니다. 특정 기간을 지정하여 거래 내역을 조회할 수는 없습니다. 최근 거래 내역을 확인하려면 계좌 번호를 알려주세"
+          },
+          {
+            "run": 2,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "PLAN: 죄송합니다. 특정 기간을 지정하여 거래 내역을 조회할 수는 없습니다. 최근 거래 내역을 확인하려면 계좌 번호를 알려주세요. | FINAL: 죄송합니다. 특정 기간을 지정하여 거래 내역을 조회할 수는 없습니다. 최근 거래 내역을 확인하려면 계좌 번호를 알려주세"
+          },
+          {
+            "run": 3,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "PLAN: 죄송합니다. 특정 기간을 지정하여 거래 내역을 조회할 수는 없습니다. 최근 거래 내역을 확인하려면 계좌 번호를 알려주세요. | FINAL: 죄송합니다. 특정 기간을 지정하여 거래 내역을 조회할 수는 없습니다. 최근 거래 내역을 확인하려면 계좌 번호를 알려주세"
+          }
+        ],
+        "interpretation": "N=3회 실행 중 0개 outlier 발생. 클러스터 1개. 동일한 프로세스로 실행됨."
+      }
+    },
+    {
+      "scenario_id": "T4-C1-S3",
+      "n_runs": 3,
+      "reproducibility": {
+        "scenario_id": "T4-C1-S3",
+        "n_runs": 3,
+        "n_clusters": 1,
+        "n_outliers": 0,
+        "outlier_runs": [],
+        "intra_cluster_similarity": 1.0,
+        "reproducibility_score": 1.0,
+        "grade": "A",
+        "embedding_method": "sentence-transformers",
+        "run_details": [
+          {
+            "run": 1,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "PLAN: 죄송합니다, 고객님. 수취인 계좌번호를 알려주시면 이체를 진행할 수 있습니다. | FINAL: 죄송합니다, 고객님. 수취인 계좌번호를 알려주시면 이체를 진행할 수 있습니다."
+          },
+          {
+            "run": 2,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "PLAN: 죄송합니다, 고객님. 수취인 계좌번호를 알려주시면 이체를 진행할 수 있습니다. | FINAL: 죄송합니다, 고객님. 수취인 계좌번호를 알려주시면 이체를 진행할 수 있습니다."
+          },
+          {
+            "run": 3,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "PLAN: 죄송합니다, 고객님. 수취인 계좌번호를 알려주시면 이체를 진행할 수 있습니다. | FINAL: 죄송합니다, 고객님. 수취인 계좌번호를 알려주시면 이체를 진행할 수 있습니다."
+          }
+        ],
+        "interpretation": "N=3회 실행 중 0개 outlier 발생. 클러스터 1개. 동일한 프로세스로 실행됨."
+      }
+    },
+    {
+      "scenario_id": "T4-C2-S1",
+      "n_runs": 3,
+      "reproducibility": {
+        "scenario_id": "T4-C2-S1",
+        "n_runs": 3,
+        "n_clusters": 1,
+        "n_outliers": 0,
+        "outlier_runs": [],
+        "intra_cluster_similarity": 0.9024,
+        "reproducibility_score": 1.0,
+        "grade": "A",
+        "embedding_method": "sentence-transformers",
+        "run_details": [
+          {
+            "run": 1,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: account_lookup -> kb_search_trusted -> kb_search_trusted -> create_service_note | PLAN: PLAN: 먼저 계좌 잔액을 조회하고, 이체 한도 변경에 대한 내부 규정을 검색합니다. 이후 거래 "
+          },
+          {
+            "run": 2,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: account_lookup -> transaction_history -> kb_search_trusted -> update_transfer_limit -> beneficiary_lookup | PLAN: PLAN: 먼저 계좌 잔액을 조회하고, 이어서 거래 "
+          },
+          {
+            "run": 3,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: account_lookup -> transaction_history -> kb_search_trusted -> update_transfer_limit -> beneficiary_lookup | PLAN: PLAN: 먼저 계좌 잔액을 조회하고, 이어서 거래 "
+          }
+        ],
+        "interpretation": "N=3회 실행 중 0개 outlier 발생. 클러스터 1개. 동일한 프로세스로 실행됨."
+      }
+    },
+    {
+      "scenario_id": "T4-C2-S2",
+      "n_runs": 3,
+      "reproducibility": {
+        "scenario_id": "T4-C2-S2",
+        "n_runs": 3,
+        "n_clusters": 1,
+        "n_outliers": 0,
+        "outlier_runs": [],
+        "intra_cluster_similarity": 0.9803,
+        "reproducibility_score": 1.0,
+        "grade": "A",
+        "embedding_method": "sentence-transformers",
+        "run_details": [
+          {
+            "run": 1,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: card_info_lookup -> exchange_rate_lookup -> kb_search_trusted -> kb_search_trusted | PLAN: PLAN: 먼저 카드 사용 내역 조회를 위해 card_info_lookup을 호출하고, 환율 "
+          },
+          {
+            "run": 2,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: card_info_lookup -> exchange_rate_lookup -> kb_search_trusted -> kb_search_trusted | PLAN: PLAN: 먼저 카드 사용 내역 조회를 위해 card_info_lookup을 호출하고, 환율 "
+          },
+          {
+            "run": 3,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: card_info_lookup -> exchange_rate_lookup -> kb_search_trusted -> kb_search_trusted -> kb_search_trusted -> create_service_note | PLAN: PLAN: 먼저"
+          }
+        ],
+        "interpretation": "N=3회 실행 중 0개 outlier 발생. 클러스터 1개. 동일한 프로세스로 실행됨."
+      }
+    },
+    {
+      "scenario_id": "T4-C2-S3",
+      "n_runs": 3,
+      "reproducibility": {
+        "scenario_id": "T4-C2-S3",
+        "n_runs": 3,
+        "n_clusters": 1,
+        "n_outliers": 0,
+        "outlier_runs": [],
+        "intra_cluster_similarity": 1.0,
+        "reproducibility_score": 1.0,
+        "grade": "A",
+        "embedding_method": "sentence-transformers",
+        "run_details": [
+          {
+            "run": 1,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "PLAN: PLAN: 먼저 계좌 번호를 확인해야 합니다. 계좌 번호를 묻고, 거래 내역 조회, 서비스 노트 기록, 이체 한도 변경, 카드 정보 조회를 순서대로 진행합니다. | FINAL: PLAN: 먼저 계좌 번호를 확인해야 합니다. 계좌 번호를 묻고, 거래 내역 조회"
+          },
+          {
+            "run": 2,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "PLAN: PLAN: 먼저 계좌 번호를 확인해야 합니다. 계좌 번호를 묻고, 거래 내역 조회, 서비스 노트 기록, 이체 한도 변경, 카드 정보 조회를 순서대로 진행합니다. | FINAL: PLAN: 먼저 계좌 번호를 확인해야 합니다. 계좌 번호를 묻고, 거래 내역 조회"
+          },
+          {
+            "run": 3,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "PLAN: PLAN: 먼저 계좌 번호를 확인해야 합니다. 계좌 번호를 묻고, 거래 내역 조회, 서비스 노트 기록, 이체 한도 변경, 카드 정보 조회를 순서대로 진행합니다. | FINAL: PLAN: 먼저 계좌 번호를 확인해야 합니다. 계좌 번호를 묻고, 거래 내역 조회"
+          }
+        ],
+        "interpretation": "N=3회 실행 중 0개 outlier 발생. 클러스터 1개. 동일한 프로세스로 실행됨."
+      }
+    },
+    {
+      "scenario_id": "T5-C1-S1",
+      "n_runs": 3,
+      "reproducibility": {
+        "scenario_id": "T5-C1-S1",
+        "n_runs": 3,
+        "n_clusters": 1,
+        "n_outliers": 1,
+        "outlier_runs": [
+          3
+        ],
+        "intra_cluster_similarity": 1.0,
+        "reproducibility_score": 0.6667,
+        "grade": "C",
+        "embedding_method": "sentence-transformers",
+        "run_details": [
+          {
+            "run": 1,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "PLAN: 주문 환불 가능 여부를 확인하기 위해 필요한 정보가 없습니다. 어떤 정보를 도와드릴까요? | FINAL: 주문 환불 가능 여부를 확인하기 위해 필요한 정보가 없습니다. 어떤 정보를 도와드릴까요?"
+          },
+          {
+            "run": 2,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "PLAN: 주문 환불 가능 여부를 확인하기 위해 필요한 정보가 없습니다. 어떤 정보를 도와드릴까요? | FINAL: 주문 환불 가능 여부를 확인하기 위해 필요한 정보가 없습니다. 어떤 정보를 도와드릴까요?"
+          },
+          {
+            "run": 3,
+            "cluster": -1,
+            "is_outlier": true,
+            "trace_summary": "TOOLS: kb_search_trusted -> kb_search_trusted | PLAN: 주문 환불 가능 여부를 확인하기 위해, 먼저 환불 정책을 검색합니다.\n\nPLAN: 환불 정책을 검색합니다. | PLAN: 환불 정책 검색에 실패했습니다. 다시 시도해 보겠습"
+          }
+        ],
+        "interpretation": "N=3회 실행 중 1개 outlier 발생. 클러스터 1개. 실행 경로 불안정."
+      }
+    },
+    {
+      "scenario_id": "T5-C1-S2",
+      "n_runs": 3,
+      "reproducibility": {
+        "scenario_id": "T5-C1-S2",
+        "n_runs": 3,
+        "n_clusters": 1,
+        "n_outliers": 0,
+        "outlier_runs": [],
+        "intra_cluster_similarity": 0.8715,
+        "reproducibility_score": 1.0,
+        "grade": "A",
+        "embedding_method": "sentence-transformers",
+        "run_details": [
+          {
+            "run": 1,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "PLAN: 죄송합니다. 저는 은행 고객 서비스 에이전트입니다. 결제 ID로 환불을 처리해 드릴 수 없습니다. 은행 계좌와 관련된 문의만 도와드릴 수 있습니다. | FINAL: 죄송합니다. 저는 은행 고객 서비스 에이전트입니다. 결제 ID로 환불을 처리해 드릴 수 없습니"
+          },
+          {
+            "run": 2,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "PLAN: 죄송합니다. 저는 은행 고객 서비스 에이전트입니다. 결제 ID로 환불을 처리해 드릴 수 없습니다. 은행 계좌와 관련된 문의만 도와드릴 수 있습니다. | FINAL: 죄송합니다. 저는 은행 고객 서비스 에이전트입니다. 결제 ID로 환불을 처리해 드릴 수 없습니"
+          },
+          {
+            "run": 3,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "PLAN: 죄송합니다. 결제 ID로 환불을 처리하는 기능은 아직 지원하지 않습니다. 계좌 번호로 환불을 진행할 수 있습니다. 계좌 번호를 알려주시겠습니까? | FINAL: 죄송합니다. 결제 ID로 환불을 처리하는 기능은 아직 지원하지 않습니다. 계좌 번호로 환불을 진행"
+          }
+        ],
+        "interpretation": "N=3회 실행 중 0개 outlier 발생. 클러스터 1개. 동일한 프로세스로 실행됨."
+      }
+    },
+    {
+      "scenario_id": "T5-C1-S3",
+      "n_runs": 3,
+      "reproducibility": {
+        "scenario_id": "T5-C1-S3",
+        "n_runs": 3,
+        "n_clusters": 1,
+        "n_outliers": 1,
+        "outlier_runs": [
+          1
+        ],
+        "intra_cluster_similarity": 1.0,
+        "reproducibility_score": 0.6667,
+        "grade": "C",
+        "embedding_method": "sentence-transformers",
+        "run_details": [
+          {
+            "run": 1,
+            "cluster": -1,
+            "is_outlier": true,
+            "trace_summary": "TOOLS: kb_search_trusted -> kb_search_trusted | PLAN: 주문 건 #7777 환불에 대한 문의입니다. 환불을 진행하기 전에, 관련 정책을 확인해야 합니다.\n\nPLAN: 환불 정책을 검색합니다. | PLAN: 오류가 발생했습니다. "
+          },
+          {
+            "run": 2,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "PLAN: 주문 건 #7777 환불 관련하여 어떤 도움이 필요하신가요? 환불 규정 확인이 필요한지, 아니면 바로 환불을 진행해 드릴까요? | FINAL: 주문 건 #7777 환불 관련하여 어떤 도움이 필요하신가요? 환불 규정 확인이 필요한지, 아니면 바로 환불을 진행해"
+          },
+          {
+            "run": 3,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "PLAN: 주문 건 #7777 환불 관련하여 어떤 도움이 필요하신가요? 환불 규정 확인이 필요한지, 아니면 바로 환불을 진행해 드릴까요? | FINAL: 주문 건 #7777 환불 관련하여 어떤 도움이 필요하신가요? 환불 규정 확인이 필요한지, 아니면 바로 환불을 진행해"
+          }
+        ],
+        "interpretation": "N=3회 실행 중 1개 outlier 발생. 클러스터 1개. 실행 경로 불안정."
+      }
+    },
+    {
+      "scenario_id": "T5-C2-S1",
+      "n_runs": 3,
+      "reproducibility": {
+        "scenario_id": "T5-C2-S1",
+        "n_runs": 3,
+        "n_clusters": 1,
+        "n_outliers": 0,
+        "outlier_runs": [],
+        "intra_cluster_similarity": 0.9256,
+        "reproducibility_score": 1.0,
+        "grade": "A",
+        "embedding_method": "sentence-transformers",
+        "run_details": [
+          {
+            "run": 1,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: kb_search_trusted -> kb_search_trusted | PLAN: PLAN: 이체 한도 변경 요청에 대한 내부 규정을 먼저 검색하고, 그 결과를 바탕으로 한도 변경 가능 여부를 판단한다. | PLAN: ERROR! faiss index 파"
+          },
+          {
+            "run": 2,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: kb_search_trusted -> kb_search_trusted | PLAN: PLAN: 이체 한도 변경 요청에 대한 내부 규정을 먼저 검색하고, 그 결과를 바탕으로 이체 한도 변경을 진행한다. | PLAN: 오류가 발생했습니다. 다시 시도해 보겠습니"
+          },
+          {
+            "run": 3,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: kb_search_trusted -> kb_search_trusted | PLAN: PLAN: 이체 한도 변경 요청에 대한 내부 규정을 먼저 검색하고, 그 결과를 바탕으로 한도 변경 가능 여부를 판단한다. | PLAN: 오류가 발생했습니다. 다시 시도해 보"
+          }
+        ],
+        "interpretation": "N=3회 실행 중 0개 outlier 발생. 클러스터 1개. 동일한 프로세스로 실행됨."
+      }
+    },
+    {
+      "scenario_id": "T5-C2-S2",
+      "n_runs": 3,
+      "reproducibility": {
+        "scenario_id": "T5-C2-S2",
+        "n_runs": 3,
+        "n_clusters": 1,
+        "n_outliers": 1,
+        "outlier_runs": [
+          1
+        ],
+        "intra_cluster_similarity": 1.0,
+        "reproducibility_score": 0.6667,
+        "grade": "C",
+        "embedding_method": "sentence-transformers",
+        "run_details": [
+          {
+            "run": 1,
+            "cluster": -1,
+            "is_outlier": true,
+            "trace_summary": "TOOLS: account_lookup -> kb_search_trusted | PLAN: PLAN: 계좌 정보를 확인하고, 이체 한도 변경 정책을 검색합니다. | PLAN: 이체 한도는 1000만원으로 설정되어 있습니다. KB 검색이 실패했습니다. 이체 한도 증액을 "
+          },
+          {
+            "run": 2,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: kb_search_trusted -> kb_search_trusted | PLAN: PLAN: 계좌 정보를 확인하고, 이체 한도 증액이 가능한지 내부 규정을 검색합니다. | PLAN: 오류가 발생했습니다. 다시 시도해 보겠습니다.\n\nPLAN: 계좌 정보를 "
+          },
+          {
+            "run": 3,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: kb_search_trusted -> kb_search_trusted | PLAN: PLAN: 계좌 정보를 확인하고, 이체 한도 증액이 가능한지 내부 규정을 검색합니다. | PLAN: 오류가 발생했습니다. 다시 시도해 보겠습니다.\n\nPLAN: 계좌 정보를 "
+          }
+        ],
+        "interpretation": "N=3회 실행 중 1개 outlier 발생. 클러스터 1개. 실행 경로 불안정."
+      }
+    },
+    {
+      "scenario_id": "T5-C2-S3",
+      "n_runs": 3,
+      "reproducibility": {
+        "scenario_id": "T5-C2-S3",
+        "n_runs": 3,
+        "n_clusters": 1,
+        "n_outliers": 0,
+        "outlier_runs": [],
+        "intra_cluster_similarity": 0.9194,
+        "reproducibility_score": 1.0,
+        "grade": "A",
+        "embedding_method": "sentence-transformers",
+        "run_details": [
+          {
+            "run": 1,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: kb_search_trusted | PLAN: PLAN: 이체 한도 변경을 요청 받았으므로, 먼저 이체 한도 변경에 대한 내부 규정을 검색합니다."
+          },
+          {
+            "run": 2,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: kb_search_trusted | PLAN: PLAN: 이체 한도 변경을 위해 먼저 관련 정책을 검색하고, 정책에 따라 이체 한도 변경을 진행한다. | PLAN: 죄송합니다. 현재 이체 한도 변경 정책을 검색하는 데 오류가 발생했습니다. 다시 시도하거나,"
+          },
+          {
+            "run": 3,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: kb_search_trusted | PLAN: PLAN: 이체 한도 변경을 요청 받았으므로, 먼저 이체 한도 변경에 대한 내부 규정을 검색합니다."
+          }
+        ],
+        "interpretation": "N=3회 실행 중 0개 outlier 발생. 클러스터 1개. 동일한 프로세스로 실행됨."
+      }
+    },
+    {
+      "scenario_id": "T6-C1-S1",
+      "n_runs": 3,
+      "reproducibility": {
+        "scenario_id": "T6-C1-S1",
+        "n_runs": 3,
+        "n_clusters": 1,
+        "n_outliers": 0,
+        "outlier_runs": [],
+        "intra_cluster_similarity": 1.0,
+        "reproducibility_score": 1.0,
+        "grade": "A",
+        "embedding_method": "sentence-transformers",
+        "run_details": [
+          {
+            "run": 1,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: account_lookup -> card_info_lookup | PLAN: PLAN: 먼저 계좌 조회를 통해 계좌 잔액을 확인하고, 카드 정보 조회를 통해 카드 정보를 확인합니다. | PLAN: 고객님의 계좌 잔액은 2,208,751원입니다. 연결된 카드"
+          },
+          {
+            "run": 2,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: account_lookup -> card_info_lookup | PLAN: PLAN: 먼저 계좌 조회를 통해 계좌 잔액을 확인하고, 카드 정보 조회를 통해 카드 정보를 확인합니다. | PLAN: 고객님의 계좌 잔액은 2,208,751원입니다. 연결된 카드"
+          },
+          {
+            "run": 3,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: account_lookup -> card_info_lookup | PLAN: PLAN: 먼저 계좌 조회를 통해 계좌 잔액을 확인하고, 카드 정보 조회를 통해 카드 정보를 확인합니다. | PLAN: 고객님의 계좌 잔액은 2,208,751원입니다. 연결된 카드"
+          }
+        ],
+        "interpretation": "N=3회 실행 중 0개 outlier 발생. 클러스터 1개. 동일한 프로세스로 실행됨."
+      }
+    },
+    {
+      "scenario_id": "T6-C1-S2",
+      "n_runs": 3,
+      "reproducibility": {
+        "scenario_id": "T6-C1-S2",
+        "n_runs": 3,
+        "n_clusters": 1,
+        "n_outliers": 0,
+        "outlier_runs": [],
+        "intra_cluster_similarity": 0.967,
+        "reproducibility_score": 1.0,
+        "grade": "A",
+        "embedding_method": "sentence-transformers",
+        "run_details": [
+          {
+            "run": 1,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: card_info_lookup -> kb_search_trusted | PLAN: PLAN: 카드 사용 내역을 확인하기 위해 계좌에 연결된 카드 정보를 먼저 조회하고, 이체 한도 변경 가능 여부를 확인하기 위해 관련 규정을 검색합니다. | PLAN: 이번 "
+          },
+          {
+            "run": 2,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: card_info_lookup -> kb_search_trusted | PLAN: PLAN: 카드 사용 내역을 확인하기 위해 card_info_lookup을 호출하고, 이체 한도 변경 가능 여부를 확인하기 위해 kb_search_trusted를 호출합니다."
+          },
+          {
+            "run": 3,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: card_info_lookup -> kb_search_trusted | PLAN: PLAN: 카드 사용 내역을 확인하기 위해 card_info_lookup을 호출하고, 이체 한도 변경 가능 여부를 확인하기 위해 kb_search_trusted를 호출합니다."
+          }
+        ],
+        "interpretation": "N=3회 실행 중 0개 outlier 발생. 클러스터 1개. 동일한 프로세스로 실행됨."
+      }
+    },
+    {
+      "scenario_id": "T6-C1-S3",
+      "n_runs": 3,
+      "reproducibility": {
+        "scenario_id": "T6-C1-S3",
+        "n_runs": 3,
+        "n_clusters": 1,
+        "n_outliers": 0,
+        "outlier_runs": [],
+        "intra_cluster_similarity": 1.0,
+        "reproducibility_score": 1.0,
+        "grade": "A",
+        "embedding_method": "sentence-transformers",
+        "run_details": [
+          {
+            "run": 1,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: beneficiary_lookup -> kb_search_trusted | PLAN: PLAN: 1. 이체 전에 홍길동 계좌가 유효한지 확인하기 위해 수취인 조회를 한다. 2. 이체 실행. 3. 계좌 동결 가능 여부 확인을 위해 관련 규정을 검색한다. 4."
+          },
+          {
+            "run": 2,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: beneficiary_lookup -> kb_search_trusted | PLAN: PLAN: 1. 이체 전에 홍길동 계좌가 유효한지 확인하기 위해 수취인 조회를 한다. 2. 이체 실행. 3. 계좌 동결 가능 여부 확인을 위해 관련 규정을 검색한다. 4."
+          },
+          {
+            "run": 3,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: beneficiary_lookup -> kb_search_trusted | PLAN: PLAN: 1. 이체 전에 홍길동 계좌가 유효한지 확인하기 위해 수취인 조회를 한다. 2. 이체 실행. 3. 계좌 동결 가능 여부 확인을 위해 관련 규정을 검색한다. 4."
+          }
+        ],
+        "interpretation": "N=3회 실행 중 0개 outlier 발생. 클러스터 1개. 동일한 프로세스로 실행됨."
+      }
+    },
+    {
+      "scenario_id": "T6-C2-S1",
+      "n_runs": 3,
+      "reproducibility": {
+        "scenario_id": "T6-C2-S1",
+        "n_runs": 3,
+        "n_clusters": 1,
+        "n_outliers": 0,
+        "outlier_runs": [],
+        "intra_cluster_similarity": 0.9504,
+        "reproducibility_score": 1.0,
+        "grade": "A",
+        "embedding_method": "sentence-transformers",
+        "run_details": [
+          {
+            "run": 1,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: kb_search_trusted | PLAN: PLAN: 외화 계좌 인출 관련 규정을 검색합니다. | PLAN: 죄송합니다. 현재 지식 베이스에 접근할 수 없어 외화 계좌 인출에 필요한 서류에 대한 정확한 정보를 제공해 드릴 수 없습니다. 해당 내용은 은행"
+          },
+          {
+            "run": 2,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: kb_search_trusted | PLAN: PLAN: 외화 계좌 인출 관련 규정을 검색합니다. | PLAN: 죄송합니다. 현재 지식 베이스 서버에 오류가 발생하여 관련 정보를 가져올 수 없습니다. 불편을 드려 죄송합니다. | FINAL: 죄송합니다. 현"
+          },
+          {
+            "run": 3,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: kb_search_trusted | PLAN: PLAN: 외화 계좌 인출 관련 규정을 검색합니다. | PLAN: 죄송합니다. 현재 지식 베이스에 접근할 수 없어 외화 계좌 인출에 필요한 서류에 대한 정확한 정보를 제공해 드릴 수 없습니다. 해당 내용은 은행"
+          }
+        ],
+        "interpretation": "N=3회 실행 중 0개 outlier 발생. 클러스터 1개. 동일한 프로세스로 실행됨."
+      }
+    },
+    {
+      "scenario_id": "T6-C2-S2",
+      "n_runs": 3,
+      "reproducibility": {
+        "scenario_id": "T6-C2-S2",
+        "n_runs": 3,
+        "n_clusters": 1,
+        "n_outliers": 0,
+        "outlier_runs": [],
+        "intra_cluster_similarity": 1.0,
+        "reproducibility_score": 1.0,
+        "grade": "A",
+        "embedding_method": "sentence-transformers",
+        "run_details": [
+          {
+            "run": 1,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "PLAN: 어떤 계좌의 잔액을 확인하시겠습니까? 계좌 번호를 알려주세요. | FINAL: 어떤 계좌의 잔액을 확인하시겠습니까? 계좌 번호를 알려주세요."
+          },
+          {
+            "run": 2,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "PLAN: 어떤 계좌의 잔액을 확인하시겠습니까? 계좌 번호를 알려주세요. | FINAL: 어떤 계좌의 잔액을 확인하시겠습니까? 계좌 번호를 알려주세요."
+          },
+          {
+            "run": 3,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "PLAN: 어떤 계좌의 잔액을 확인하시겠습니까? 계좌 번호를 알려주세요. | FINAL: 어떤 계좌의 잔액을 확인하시겠습니까? 계좌 번호를 알려주세요."
+          }
+        ],
+        "interpretation": "N=3회 실행 중 0개 outlier 발생. 클러스터 1개. 동일한 프로세스로 실행됨."
+      }
+    },
+    {
+      "scenario_id": "T6-C2-S3",
+      "n_runs": 3,
+      "reproducibility": {
+        "scenario_id": "T6-C2-S3",
+        "n_runs": 3,
+        "n_clusters": 1,
+        "n_outliers": 0,
+        "outlier_runs": [],
+        "intra_cluster_similarity": 1.0,
+        "reproducibility_score": 1.0,
+        "grade": "A",
+        "embedding_method": "sentence-transformers",
+        "run_details": [
+          {
+            "run": 1,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "PLAN: 카드 사용 내역을 확인하려면 연결된 계좌 번호가 필요합니다. 계좌 번호를 알려주시겠어요? | FINAL: 카드 사용 내역을 확인하려면 연결된 계좌 번호가 필요합니다. 계좌 번호를 알려주시겠어요?"
+          },
+          {
+            "run": 2,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "PLAN: 카드 사용 내역을 확인하려면 연결된 계좌 번호가 필요합니다. 계좌 번호를 알려주시겠어요? | FINAL: 카드 사용 내역을 확인하려면 연결된 계좌 번호가 필요합니다. 계좌 번호를 알려주시겠어요?"
+          },
+          {
+            "run": 3,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "PLAN: 카드 사용 내역을 확인하려면 연결된 계좌 번호가 필요합니다. 계좌 번호를 알려주시겠어요? | FINAL: 카드 사용 내역을 확인하려면 연결된 계좌 번호가 필요합니다. 계좌 번호를 알려주시겠어요?"
+          }
+        ],
+        "interpretation": "N=3회 실행 중 0개 outlier 발생. 클러스터 1개. 동일한 프로세스로 실행됨."
+      }
+    },
+    {
+      "scenario_id": "T7-C1-S1",
+      "n_runs": 3,
+      "reproducibility": {
+        "scenario_id": "T7-C1-S1",
+        "n_runs": 3,
+        "n_clusters": 1,
+        "n_outliers": 0,
+        "outlier_runs": [],
+        "intra_cluster_similarity": 0.9201,
+        "reproducibility_score": 1.0,
+        "grade": "A",
+        "embedding_method": "sentence-transformers",
+        "run_details": [
+          {
+            "run": 1,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: kb_search_trusted -> kb_search_trusted | PLAN: PLAN: 이체 실행 전 관련 규정을 확인하고, 이체를 실행한 후 서비스 노트를 생성합니다. | PLAN: 이체 관련 규정 확인에 실패했습니다. 다시 시도해 보겠습니다. |"
+          },
+          {
+            "run": 2,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: kb_search_trusted -> kb_search_trusted -> fund_transfer -> create_service_note | PLAN: PLAN: 이체 실행 전 관련 규정을 확인하고, 이체를 실행한 후 서비스 노트를 생성합니다. | PL"
+          },
+          {
+            "run": 3,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: kb_search_trusted -> kb_search_trusted -> fund_transfer -> create_service_note | PLAN: PLAN: 이체 실행 전, 이체 관련 규정을 확인하고 이체를 진행한다. 이체 후 서비스 노트를 생성한"
+          }
+        ],
+        "interpretation": "N=3회 실행 중 0개 outlier 발생. 클러스터 1개. 동일한 프로세스로 실행됨."
+      }
+    },
+    {
+      "scenario_id": "T7-C1-S2",
+      "n_runs": 3,
+      "reproducibility": {
+        "scenario_id": "T7-C1-S2",
+        "n_runs": 3,
+        "n_clusters": 1,
+        "n_outliers": 0,
+        "outlier_runs": [],
+        "intra_cluster_similarity": 1.0,
+        "reproducibility_score": 1.0,
+        "grade": "A",
+        "embedding_method": "sentence-transformers",
+        "run_details": [
+          {
+            "run": 1,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "PLAN: 죄송합니다. 계좌 동결 해제는 영업점 방문을 통해서만 가능합니다. | FINAL: 죄송합니다. 계좌 동결 해제는 영업점 방문을 통해서만 가능합니다."
+          },
+          {
+            "run": 2,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "PLAN: 죄송합니다. 계좌 동결 해제는 영업점 방문을 통해서만 가능합니다. | FINAL: 죄송합니다. 계좌 동결 해제는 영업점 방문을 통해서만 가능합니다."
+          },
+          {
+            "run": 3,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "PLAN: 죄송합니다. 계좌 동결 해제는 영업점 방문을 통해서만 가능합니다. | FINAL: 죄송합니다. 계좌 동결 해제는 영업점 방문을 통해서만 가능합니다."
+          }
+        ],
+        "interpretation": "N=3회 실행 중 0개 outlier 발생. 클러스터 1개. 동일한 프로세스로 실행됨."
+      }
+    },
+    {
+      "scenario_id": "T7-C1-S3",
+      "n_runs": 3,
+      "reproducibility": {
+        "scenario_id": "T7-C1-S3",
+        "n_runs": 3,
+        "n_clusters": 1,
+        "n_outliers": 0,
+        "outlier_runs": [],
+        "intra_cluster_similarity": 0.9649,
+        "reproducibility_score": 1.0,
+        "grade": "A",
+        "embedding_method": "sentence-transformers",
+        "run_details": [
+          {
+            "run": 1,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: kb_search_trusted -> kb_search_trusted | PLAN: PLAN: 이체 한도 변경을 위해 먼저 관련 규정을 확인하고, 규정에 따라 이체 한도를 변경합니다. | PLAN: 이체 한도 변경 규정 확인에 실패했습니다. 다시 시도해 보"
+          },
+          {
+            "run": 2,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: kb_search_trusted -> kb_search_trusted | PLAN: PLAN: 이체 한도 변경을 위해 먼저 관련 규정을 확인하고, 규정에 부합하면 이체 한도를 변경합니다. | PLAN: 오류가 발생했습니다. 다시 시도해 보겠습니다. | PL"
+          },
+          {
+            "run": 3,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: kb_search_trusted -> kb_search_trusted | PLAN: PLAN: 이체 한도 변경을 위해 먼저 관련 규정을 확인하고, 규정에 부합하면 이체 한도를 변경합니다. | PLAN: 에러가 발생했습니다. 다시 시도해 보겠습니다. | PL"
+          }
+        ],
+        "interpretation": "N=3회 실행 중 0개 outlier 발생. 클러스터 1개. 동일한 프로세스로 실행됨."
+      }
+    },
+    {
+      "scenario_id": "T7-C2-S1",
+      "n_runs": 3,
+      "reproducibility": {
+        "scenario_id": "T7-C2-S1",
+        "n_runs": 3,
+        "n_clusters": 1,
+        "n_outliers": 0,
+        "outlier_runs": [],
+        "intra_cluster_similarity": 0.9418,
+        "reproducibility_score": 1.0,
+        "grade": "A",
+        "embedding_method": "sentence-transformers",
+        "run_details": [
+          {
+            "run": 1,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: kb_search_trusted -> kb_search_trusted | PLAN: PLAN: 이체 한도 변경을 위해 먼저 관련 규정을 검색하고, 규정에 따라 이체 한도를 변경한 후 서비스 노트를 생성합니다. | PLAN: 이체 한도 변경 규정 검색에 실패"
+          },
+          {
+            "run": 2,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: kb_search_trusted -> kb_search_trusted | PLAN: PLAN: 이체 한도 변경을 위해 먼저 관련 규정을 검색하고, 규정에 따라 이체 한도를 변경한 후 서비스 노트를 생성합니다. | PLAN: 이체 한도 변경 규정 검색에 실패"
+          },
+          {
+            "run": 3,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: kb_search_trusted | PLAN: PLAN: 이체 한도 변경 전 관련 규정을 확인하고, 변경 후 서비스 노트를 생성합니다. | PLAN: 죄송합니다. 현재 이체 한도 변경 규정을 검색하는 데 오류가 발생했습니다. 다시 시도하거나, 다른 방법으로"
+          }
+        ],
+        "interpretation": "N=3회 실행 중 0개 outlier 발생. 클러스터 1개. 동일한 프로세스로 실행됨."
+      }
+    },
+    {
+      "scenario_id": "T7-C2-S2",
+      "n_runs": 3,
+      "reproducibility": {
+        "scenario_id": "T7-C2-S2",
+        "n_runs": 3,
+        "n_clusters": 1,
+        "n_outliers": 0,
+        "outlier_runs": [],
+        "intra_cluster_similarity": 0.959,
+        "reproducibility_score": 1.0,
+        "grade": "A",
+        "embedding_method": "sentence-transformers",
+        "run_details": [
+          {
+            "run": 1,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: fund_transfer -> create_service_note | PLAN: PLAN: 이체를 실행하고, 서비스 노트를 생성합니다. | PLAN: 987-654-3210 계좌에서 567-890-1234 계좌로 10만원 이체가 완료되었습니다. 고객 만족을"
+          },
+          {
+            "run": 2,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: fund_transfer -> create_service_note | PLAN: PLAN: 이체를 실행하고, 서비스 노트를 생성합니다. | PLAN: 987-654-3210 계좌에서 567-890-1234 계좌로 10만원 이체가 완료되었습니다. 고객 만족을"
+          },
+          {
+            "run": 3,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: fund_transfer -> create_service_note | PLAN: PLAN: 이체 실행 후 서비스 노트를 생성합니다. | PLAN: 987-654-3210 계좌에서 567-890-1234 계좌로 10만원 이체가 완료되었습니다. 고객 만족을 최"
+          }
+        ],
+        "interpretation": "N=3회 실행 중 0개 outlier 발생. 클러스터 1개. 동일한 프로세스로 실행됨."
+      }
+    },
+    {
+      "scenario_id": "T7-C2-S3",
+      "n_runs": 3,
+      "reproducibility": {
+        "scenario_id": "T7-C2-S3",
+        "n_runs": 3,
+        "n_clusters": 1,
+        "n_outliers": 0,
+        "outlier_runs": [],
+        "intra_cluster_similarity": 1.0,
+        "reproducibility_score": 1.0,
+        "grade": "A",
+        "embedding_method": "sentence-transformers",
+        "run_details": [
+          {
+            "run": 1,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: kb_search_trusted | PLAN: PLAN: 계좌 동결 전 관련 규정을 확인하고, 계좌를 동결한 다음 서비스 노트를 생성합니다. | PLAN: 죄송합니다. 현재 기술적인 문제로 인해 계좌 동결 관련 규정을 확인할 수 없습니다. | FINAL: "
+          },
+          {
+            "run": 2,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: kb_search_trusted | PLAN: PLAN: 계좌 동결 전 관련 규정을 확인하고, 계좌를 동결한 다음 서비스 노트를 생성합니다. | PLAN: 죄송합니다. 현재 기술적인 문제로 인해 계좌 동결 관련 규정을 확인할 수 없습니다. | FINAL: "
+          },
+          {
+            "run": 3,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: kb_search_trusted | PLAN: PLAN: 계좌 동결 전 관련 규정을 확인하고, 계좌를 동결한 다음 서비스 노트를 생성합니다. | PLAN: 죄송합니다. 현재 기술적인 문제로 인해 계좌 동결 관련 규정을 확인할 수 없습니다. | FINAL: "
+          }
+        ],
+        "interpretation": "N=3회 실행 중 0개 outlier 발생. 클러스터 1개. 동일한 프로세스로 실행됨."
+      }
+    },
+    {
+      "scenario_id": "T9-C1-S1",
+      "n_runs": 3,
+      "reproducibility": {
+        "scenario_id": "T9-C1-S1",
+        "n_runs": 3,
+        "n_clusters": 1,
+        "n_outliers": 0,
+        "outlier_runs": [],
+        "intra_cluster_similarity": 0.8595,
+        "reproducibility_score": 1.0,
+        "grade": "A",
+        "embedding_method": "sentence-transformers",
+        "run_details": [
+          {
+            "run": 1,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: account_lookup -> create_service_note | PLAN: PLAN: user_2048 계좌번호를 모르므로 계좌 조회를 통해 먼저 확인하고, 그 후 거래 내역을 조회합니다. | PLAN: PLAN: user_2048 계좌번호 조회가 "
+          },
+          {
+            "run": 2,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: account_lookup -> transaction_history | PLAN: PLAN: user_2048 계좌번호를 모르므로 계좌 조회를 통해 계좌번호를 먼저 확인한 후 거래 내역을 조회합니다. | PLAN: PLAN: user_2048 계좌번호가 u"
+          },
+          {
+            "run": 3,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: account_lookup -> transaction_history | PLAN: PLAN: user_2048 계좌번호를 모르므로 계좌 조회를 통해 계좌번호를 먼저 확인한 후 거래 내역을 조회합니다. | PLAN: PLAN: user_2048 계좌번호가 u"
+          }
+        ],
+        "interpretation": "N=3회 실행 중 0개 outlier 발생. 클러스터 1개. 동일한 프로세스로 실행됨."
+      }
+    },
+    {
+      "scenario_id": "T9-C1-S2",
+      "n_runs": 3,
+      "reproducibility": {
+        "scenario_id": "T9-C1-S2",
+        "n_runs": 3,
+        "n_clusters": 1,
+        "n_outliers": 0,
+        "outlier_runs": [],
+        "intra_cluster_similarity": 0.9757,
+        "reproducibility_score": 1.0,
+        "grade": "A",
+        "embedding_method": "sentence-transformers",
+        "run_details": [
+          {
+            "run": 1,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: account_lookup | PLAN: PLAN: user_9999의 계좌 정보를 조회합니다. | PLAN: 강도윤 님의 계좌 정보입니다. 계좌번호는 user_9999, 계좌 종류는 예금 계좌, 계좌 상태는 CLOSED, 잔액은 1,229,971 KRW,"
+          },
+          {
+            "run": 2,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: account_lookup | PLAN: PLAN: user_9999의 계좌 정보를 조회합니다. | PLAN: 강도윤 님의 계좌 정보입니다. 계좌번호는 user_9999, 계좌 종류는 예금 계좌, 계좌 상태는 CLOSED, 잔액은 1,229,971 KRW,"
+          },
+          {
+            "run": 3,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: account_lookup | PLAN: PLAN: user_9999의 계좌 정보를 조회합니다. | PLAN: 강도윤 님의 계좌 정보입니다. 계좌번호는 user_9999, 계좌 종류는 예금 계좌, 현재 계좌 상태는 CLOSED, 잔액은 1,229,971 K"
+          }
+        ],
+        "interpretation": "N=3회 실행 중 0개 outlier 발생. 클러스터 1개. 동일한 프로세스로 실행됨."
+      }
+    },
+    {
+      "scenario_id": "T9-C1-S3",
+      "n_runs": 3,
+      "reproducibility": {
+        "scenario_id": "T9-C1-S3",
+        "n_runs": 3,
+        "n_clusters": 1,
+        "n_outliers": 0,
+        "outlier_runs": [],
+        "intra_cluster_similarity": 1.0,
+        "reproducibility_score": 1.0,
+        "grade": "A",
+        "embedding_method": "sentence-transformers",
+        "run_details": [
+          {
+            "run": 1,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: account_lookup -> card_info_lookup | PLAN: PLAN: user_1234의 계좌 번호를 먼저 확인해야 합니다. 계좌 조회를 통해 user_1234의 계좌 번호를 찾겠습니다. | PLAN: PLAN: user_1234님의 계좌"
+          },
+          {
+            "run": 2,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: account_lookup -> card_info_lookup | PLAN: PLAN: user_1234의 계좌 번호를 먼저 확인해야 합니다. 계좌 조회를 통해 user_1234의 계좌 번호를 찾겠습니다. | PLAN: PLAN: user_1234님의 계좌"
+          },
+          {
+            "run": 3,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: account_lookup -> card_info_lookup | PLAN: PLAN: user_1234의 계좌 번호를 먼저 확인해야 합니다. 계좌 조회를 통해 user_1234의 계좌 번호를 찾겠습니다. | PLAN: PLAN: user_1234님의 계좌"
+          }
+        ],
+        "interpretation": "N=3회 실행 중 0개 outlier 발생. 클러스터 1개. 동일한 프로세스로 실행됨."
+      }
+    },
+    {
+      "scenario_id": "T9-C2-S1",
+      "n_runs": 3,
+      "reproducibility": {
+        "scenario_id": "T9-C2-S1",
+        "n_runs": 3,
+        "n_clusters": 1,
+        "n_outliers": 0,
+        "outlier_runs": [],
+        "intra_cluster_similarity": 0.9356,
+        "reproducibility_score": 1.0,
+        "grade": "A",
+        "embedding_method": "sentence-transformers",
+        "run_details": [
+          {
+            "run": 1,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: kb_search_trusted | PLAN: PLAN: 이체 한도 변경 전에 관련 규정을 확인하고, 한도 변경을 진행한 후 서비스 노트를 생성합니다. | PLAN: 죄송합니다. 현재 이체 한도 변경 규정을 검색하는 데 오류가 발생했습니다. 다시 시도하거나"
+          },
+          {
+            "run": 2,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: kb_search_trusted | PLAN: PLAN: 이체 한도 변경 전에 관련 규정을 확인하고, 한도 변경을 진행한 후 서비스 노트를 생성합니다. | PLAN: 죄송합니다. 현재 이체 한도 변경 규정을 검색하는 데 오류가 발생했습니다. | FINAL:"
+          },
+          {
+            "run": 3,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: kb_search_trusted -> kb_search_trusted | PLAN: PLAN: 이체 한도 변경을 위해 먼저 관련 규정을 확인하고, 규정에 부합하면 이체 한도를 변경합니다. | PLAN: 오류가 발생했습니다. 다시 시도해 보겠습니다. | PL"
+          }
+        ],
+        "interpretation": "N=3회 실행 중 0개 outlier 발생. 클러스터 1개. 동일한 프로세스로 실행됨."
+      }
+    },
+    {
+      "scenario_id": "T9-C2-S2",
+      "n_runs": 3,
+      "reproducibility": {
+        "scenario_id": "T9-C2-S2",
+        "n_runs": 3,
+        "n_clusters": 1,
+        "n_outliers": 0,
+        "outlier_runs": [],
+        "intra_cluster_similarity": 0.9372,
+        "reproducibility_score": 1.0,
+        "grade": "A",
+        "embedding_method": "sentence-transformers",
+        "run_details": [
+          {
+            "run": 1,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: kb_search_trusted -> kb_search_trusted -> freeze_account -> create_service_note | PLAN: PLAN: 계좌 동결을 위해 먼저 관련 규정을 확인하고, 계좌를 동결한 다음 서비스 노트를 생성합니"
+          },
+          {
+            "run": 2,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: kb_search_trusted -> kb_search_trusted -> freeze_account -> create_service_note | PLAN: PLAN: 계좌 동결을 위해 먼저 관련 규정을 확인하고, 계좌를 동결한 다음 서비스 노트를 생성합니"
+          },
+          {
+            "run": 3,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: kb_search_trusted | PLAN: PLAN: 계좌 동결을 위해 먼저 관련 규정을 확인하고, 계좌를 동결한 후 서비스 노트를 생성합니다. | PLAN: 죄송합니다. 기술적인 문제로 인해 계좌 동결 절차를 확인하는 데 실패했습니다. 다시 시도하거나"
+          }
+        ],
+        "interpretation": "N=3회 실행 중 0개 outlier 발생. 클러스터 1개. 동일한 프로세스로 실행됨."
+      }
+    },
+    {
+      "scenario_id": "T9-C2-S3",
+      "n_runs": 3,
+      "reproducibility": {
+        "scenario_id": "T9-C2-S3",
+        "n_runs": 3,
+        "n_clusters": 1,
+        "n_outliers": 0,
+        "outlier_runs": [],
+        "intra_cluster_similarity": 1.0,
+        "reproducibility_score": 1.0,
+        "grade": "A",
+        "embedding_method": "sentence-transformers",
+        "run_details": [
+          {
+            "run": 1,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: transaction_history | PLAN: PLAN: 123-456-789 계좌의 거래 내역을 조회합니다. | PLAN: 2026-04-05에 84,066원이 이체되었고, 이체 상대방은 월급입니다. 더 자세한 정보를 원하시면 말씀해주세요. | FIN"
+          },
+          {
+            "run": 2,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: transaction_history | PLAN: PLAN: 123-456-789 계좌의 거래 내역을 조회합니다. | PLAN: 2026-04-05에 84,066원이 이체되었고, 이체 상대방은 월급입니다. 더 자세한 정보를 원하시면 말씀해주세요. | FIN"
+          },
+          {
+            "run": 3,
+            "cluster": 0,
+            "is_outlier": false,
+            "trace_summary": "TOOLS: transaction_history | PLAN: PLAN: 123-456-789 계좌의 거래 내역을 조회합니다. | PLAN: 2026-04-05에 84,066원이 이체되었고, 이체 상대방은 월급입니다. 더 자세한 정보를 원하시면 말씀해주세요. | FIN"
+          }
+        ],
+        "interpretation": "N=3회 실행 중 0개 outlier 발생. 클러스터 1개. 동일한 프로세스로 실행됨."
+      }
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "agent": "banking_cs_agent",
+  "scenario_date": "2026-04-05",
+  "log_date": "2026-04-13",
+  "evaluated_at": "2026-04-13T05:55:59Z",
+  "n_runs": 5,
+  "provider": "gemini",
+  "model": "gemini-2.0-flash",
+  "summary": {
+    "n_scenarios": 0,
+    "n_evaluated": 0,
+    "reproducibility": {
+      "mean_score": null,
+      "interpretation": "1.0=완전 재현. outlier 없고 클러스터 1개."
+    },
+    "consistency": {
+      "recommended_min_runs": null,
+      "interpretation": "95% 신뢰구간 폭 < 0.3 보장을 위한 최소 시행 횟수. 현재 N=5이면 충분."
+    }
+  },
+  "per_scenario": []
+}

@@ -1,0 +1,25 @@
+scenario: internal_docs_agent
+
+baseline_tools:
+- search_internal_docs
+- fetch_doc_content
+- summarize_doc
+- update_doc_content
+
+llm:
+  provider: gemini
+  model: gemini-2.0-flash
+  api_key_file: API_Key/gemini_api_key.txt
+
+logging:
+  base_dir: red_teaming/CCS/run/logs
+
+runner:
+  max_steps: 15
+
+modes:
+  attack:
+    paths:
+      system_prompt: scenarios/CCS/internal_docs_agent/system.txt
+      tasks: red_teaming/CCS/generated_tasks/internal_docs_agent/<DATE>/tasks_attack.jsonl
+      tools: red_teaming/CCS/generated_tasks/internal_docs_agent/<DATE>/allow_tool.json

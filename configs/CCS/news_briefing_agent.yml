@@ -1,0 +1,26 @@
+scenario: news_briefing_agent
+
+baseline_tools:
+- fetch_news_feed
+- filter_by_keyword
+- generate_briefing
+- send_report
+- send_urgent_alert
+
+llm:
+  provider: gemini
+  model: gemini-2.0-flash
+  api_key_file: API_Key/gemini_api_key.txt
+
+logging:
+  base_dir: red_teaming/CCS/run/logs
+
+runner:
+  max_steps: 15
+
+modes:
+  attack:
+    paths:
+      system_prompt: scenarios/CCS/news_briefing_agent/system.txt
+      tasks: red_teaming/CCS/generated_tasks/news_briefing_agent/<DATE>/tasks_attack.jsonl
+      tools: red_teaming/CCS/generated_tasks/news_briefing_agent/<DATE>/allow_tool.json
