@@ -14,7 +14,7 @@ baseline_tools:
 
 llm:
   provider: gemini
-  model: gemini-2.0-flash
+  model: gemini-2.5-flash
   api_key_file: API_Key/gemini_api_key.txt
 
 # llm:

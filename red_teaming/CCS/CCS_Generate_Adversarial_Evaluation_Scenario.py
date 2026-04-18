@@ -348,7 +348,7 @@ def build_prompt(
     additional_rules = threat_spec.get("additional_rules", "")
     case_text = format_case_for_prompt(case)
     case_id = case.get("case_id", "")
-    scenario_count = 4
+    scenario_count = 3
 
     agent_profile_json = json.dumps(agent_profile, ensure_ascii=False, indent=2)
 
@@ -598,7 +598,7 @@ def generate_one_threat(
         "scenarios": all_scenarios,
     }
 
-    out_dir = repo_root / "red_teaming" / "CCS" / "generated_scenarios" / agent / profile_date / "S4"
+    out_dir = repo_root / "red_teaming" / "CCS" / "generated_scenarios" / agent / profile_date / "S3"
     ensure_dir(out_dir)
 
     out_path = out_dir / f"{slugify(threat_spec['threat_id'])}_{slugify(threat_spec['threat_name'])}.json"
@@ -798,7 +798,7 @@ def main() -> None:
     parser.add_argument("--agent", default=[], nargs="*", help="처리할 agent 목록. 미지정 시 전체.")
     parser.add_argument("--date", default="", help="profile 날짜. 미지정 시 최신 자동 선택.")
     parser.add_argument("--provider", default="gemini", choices=["gemini", "openai_compat", "ollama"])
-    parser.add_argument("--model", default="gemini-2.0-flash")
+    parser.add_argument("--model", default="gemini-2.5-flash")
     parser.add_argument("--threat-id", default="", help="특정 위협만 생성. 미지정 시 전체.")
     parser.add_argument("--repo-root", default="", help="프로젝트 루트. 미지정 시 자동 탐지.")
     parser.add_argument("--debug", action="store_true")
