@@ -5,6 +5,7 @@ from pathlib import Path
 from typing import Dict, List, Any, Optional
 import uuid
 import zlib
+import numpy as np
 
 import faiss
 from sentence_transformers import SentenceTransformer
@@ -43,7 +44,12 @@ def _load_trusted_faiss():
     meta_path = _TRUSTED_INDEX_DIR / "meta.jsonl"
     if not index_path.exists() or not meta_path.exists():
         raise RuntimeError(f"Trusted KB index not found: {index_path}")
-    index = faiss.read_index(str(index_path))
+
+    # 한글 경로 우회: Python에서 바이트로 읽고 역직렬화 (Windows + 유니코드 경로 호환)
+    with open(index_path, "rb") as f:
+        buf = f.read()
+    index = faiss.deserialize_index(np.frombuffer(buf, dtype=np.uint8))
+
     metas: List[Dict[str, Any]] = []
     with meta_path.open("r", encoding="utf-8") as f:
         for line in f:

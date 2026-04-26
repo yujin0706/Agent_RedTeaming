@@ -1,15 +1,24 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-CCS Attack Trace 임베딩 시각화
-- tool sequence / final 텍스트를 각각 임베딩 후 가중 평균 벡터 생성
-- UMAP으로 2D 축소
-- T번호별 색상, C번호별 마커로 scatter plot 시각화
-- KNN 기반 그룹 내 outlier 탐지
+Trace-level UMAP visualization for CCS attack traces.
 
-사용법:
-  python CCS_Embedding_Visualizer.py
-  python CCS_Embedding_Visualizer.py --tool-weight 0.7 --final-weight 0.3 --threshold 0.035
+For a given agent and S-folder:
+  1. Loads verdicts from judge_results.json  (O / X / skip if [API_ERROR])
+  2. Loads cached embeddings (trace_emb_<agent>.npz)
+  3. Flags outliers per scenario (verdict-based):
+       5:0        → none
+       4:1 / 1:4  → minority is outlier (Case A)
+       3:2 / 2:3  → 3-group: trace whose avg sim < group_mean - delta (Case C)
+                    2-group: both traces if pair sim < threshold     (Case B)
+  4. Plots UMAP. One label per (scenario, verdict) group:
+       5:0  → single label "T3-C1-S3 5O"
+       4:1  → two labels "T3-C1-S3 4O" and "T3-C1-S3 1X"
+       3:2  → two labels "T3-C1-S3 3O" and "T3-C1-S3 2X"
+     Each label is placed at the centroid of its verdict group's traces.
+
+Usage:
+    python CCS_Embedding_Visualizer.py --agent banking_cs_agent --s-folder S3
 """
 
 from __future__ import annotations
@@ -17,404 +26,386 @@ from __future__ import annotations
 import argparse
 import json
 import re
-from collections import defaultdict
+from collections import Counter, defaultdict
 from pathlib import Path
-from typing import Any, Dict, List, Tuple
 
 import numpy as np
 
-try:
-    from openai import OpenAI
-except ImportError:
-    raise RuntimeError("pip install openai")
 
-try:
-    import umap
-except ImportError:
-    raise RuntimeError("pip install umap-learn")
+# ═══════════════════════════════════════════════════════════════════════════
+# Outlier thresholds — MUST match CCS_Trace_Reproducibility.py
+# ═══════════════════════════════════════════════════════════════════════════
+OUTLIER_DELTA_3GRP = 0.0030
+OUTLIER_THRESHOLD_2GRP = 0.9785
+# ═══════════════════════════════════════════════════════════════════════════
 
-try:
-    from sklearn.neighbors import NearestNeighbors
-    from sklearn.preprocessing import normalize
-    from sklearn.metrics.pairwise import cosine_distances
-except ImportError:
-    raise RuntimeError("pip install scikit-learn")
 
-try:
+DEFAULT_LOGS_ROOT = (
+    r"C:\Users\최유진\Desktop\VSCode\Agent_AI_Security"
+    r"\red_teaming\CCS\run\logs"
+)
+DEFAULT_SCENARIOS_ROOT = (
+    r"C:\Users\최유진\Desktop\VSCode\Agent_AI_Security"
+    r"\red_teaming\CCS\generated_scenarios"
+)
+
+SCENARIO_ID_RE = re.compile(r"^(T\d+)-(C\d+)-(S\d+)$")
+CASE_MARKERS = {"C1": "o", "C2": "s", "C3": "^"}
+CASE_MARKER_FALLBACK = "D"
+
+
+# ───────────────────── helpers ──────────────────────────────────────────────
+
+def parse_scenario_id(sid: str):
+    m = SCENARIO_ID_RE.match(sid or "")
+    return (m.group(1), m.group(2), m.group(3)) if m else ("T?", "C?", "S?")
+
+
+def load_verdicts(judge_path: Path) -> dict:
+    data = json.loads(judge_path.read_text(encoding="utf-8"))
+    out = {}
+    for r in data.get("results", []):
+        fname = Path(r.get("log_file", "")).name
+        reason = r.get("reason", "") or ""
+        if reason.startswith("[API_ERROR]"):
+            continue
+        out[fname] = r.get("judge", "X")
+    return out
+
+
+def cosine_sim_matrix(emb: np.ndarray) -> np.ndarray:
+    norm = np.linalg.norm(emb, axis=1, keepdims=True)
+    normed = emb / np.clip(norm, 1e-12, None)
+    return normed @ normed.T
+
+
+def flag_outliers(idxs: list, verdicts_local: list,
+                   sim: np.ndarray) -> set:
+    n = len(idxs)
+    if n < 2:
+        return set()
+    v_counter = Counter(verdicts_local)
+    counts = sorted(v_counter.values(), reverse=True)
+    groups = defaultdict(list)
+    for li, v in enumerate(verdicts_local):
+        groups[v].append(li)
+
+    outlier = set()
+    if len(v_counter) == 1:
+        return outlier
+
+    if len(counts) == 2 and counts[-1] == 1 and counts[0] == n - 1:
+        minority = min(v_counter, key=v_counter.get)
+        for li in groups[minority]:
+            outlier.add(idxs[li])
+        return outlier
+
+    if counts == [3, 2]:
+        for _v, locs in groups.items():
+            if len(locs) == 3:
+                per_mean = {}
+                for li in locs:
+                    others = [lj for lj in locs if lj != li]
+                    per_mean[li] = float(np.mean(
+                        [sim[idxs[li], idxs[lj]] for lj in others]))
+                group_mean = float(np.mean(list(per_mean.values())))
+                for li, m in per_mean.items():
+                    if m < group_mean - OUTLIER_DELTA_3GRP:
+                        outlier.add(idxs[li])
+            elif len(locs) == 2:
+                gi0, gi1 = idxs[locs[0]], idxs[locs[1]]
+                if float(sim[gi0, gi1]) < OUTLIER_THRESHOLD_2GRP:
+                    outlier.add(gi0)
+                    outlier.add(gi1)
+    return outlier
+
+
+def build_threat_color_map(threats: list) -> dict:
     import matplotlib.pyplot as plt
-    import matplotlib.patches as mpatches
-    from matplotlib.lines import Line2D
-except ImportError:
-    raise RuntimeError("pip install matplotlib")
 
-try:
-    from adjustText import adjust_text
-    HAS_ADJUST_TEXT = True
-except ImportError:
-    HAS_ADJUST_TEXT = False
+    def tkey(t):
+        m = re.match(r"T(\d+)", t)
+        return int(m.group(1)) if m else 999
+
+    unique = sorted(set(threats), key=tkey)
+    cmap = plt.cm.tab20
+    return {t: cmap(i % 20) for i, t in enumerate(unique)}
 
 
-# ─────────────────────────────────────────────
-# 경로 설정
-# ─────────────────────────────────────────────
+# ───────────────────── main ─────────────────────────────────────────────────
 
-DEFAULT_KEY_PATH = r"C:\Users\최유진\Desktop\VSCode\Agent_AI_Security\API_Key\OpenAI_key.txt"
-DEFAULT_LOGS_DIR = r"C:\Users\최유진\Desktop\VSCode\Agent_AI_Security\red_teaming\CCS\run\logs\banking_cs_agent\attack\2026-04-15\S1"
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--agent", required=True)
+    ap.add_argument("--s-folder", required=True)
+    ap.add_argument("--date", default="", help="YYYY-MM-DD. Default: latest.")
+    ap.add_argument("--logs-root", default=DEFAULT_LOGS_ROOT)
+    ap.add_argument("--scenarios-root", default=DEFAULT_SCENARIOS_ROOT)
+    ap.add_argument("--cache-dir", default=".")
+    ap.add_argument("--output-dir", default=None)
+    args = ap.parse_args()
 
+    # Resolve date
+    agent_attack = Path(args.logs_root) / args.agent / "attack"
+    if args.date:
+        log_date = args.date
+    else:
+        dates = [d.name for d in sorted(agent_attack.iterdir())
+                 if d.is_dir() and re.match(r"^\d{4}-\d{2}-\d{2}$", d.name)]
+        if not dates:
+            raise RuntimeError(f"No date folders in {agent_attack}")
+        log_date = dates[-1]
 
-# ─────────────────────────────────────────────
-# JSONL 파싱
-# ─────────────────────────────────────────────
+    s_dir = agent_attack / log_date / args.s_folder
+    judge_path = s_dir / "judge_results.json"
+    if not judge_path.exists():
+        raise RuntimeError(f"judge_results.json not found: {judge_path}")
 
-def load_jsonl(path: Path) -> List[Dict[str, Any]]:
-    rows = []
-    with path.open("r", encoding="utf-8") as f:
-        for line in f:
-            line = line.strip()
-            if line:
-                rows.append(json.loads(line))
-    return rows
+    cache_path = Path(args.cache_dir) / f"trace_emb_{args.agent}.npz"
+    if not cache_path.exists():
+        raise RuntimeError(
+            f"Embedding cache not found: {cache_path}\n"
+            "Run CCS_Trace_Reproducibility.py first.")
 
+    print(f"agent:      {args.agent}")
+    print(f"s_folder:   {args.s_folder}")
+    print(f"log_date:   {log_date}")
+    print()
 
-def parse_trace(records: List[Dict[str, Any]]) -> Tuple[str, str]:
-    """
-    tool sequence 텍스트와 final 텍스트를 분리 추출.
-    Returns: (tool_text, final_text)
-    """
-    tool_calls = [r["name"] for r in records if r.get("type") == "tool_call"]
-    final_text = next((r["text"] for r in records if r.get("type") == "final"), "")
-    tool_seq = " -> ".join(tool_calls) if tool_calls else "(no tools)"
-    return f"TOOL SEQUENCE: {tool_seq}", final_text[:500]
+    # Load
+    verdicts = load_verdicts(judge_path)
+    cached = np.load(cache_path, allow_pickle=True)
+    all_keys = cached["trace_keys"].tolist()
+    all_emb = cached["embeddings"]
+    print(f"Loaded {len(verdicts)} verdicts · {len(all_keys)} cached traces")
 
+    # Filter + align
+    s_prefix = f"{args.agent}|{args.s_folder}|"
+    emb_list, sids, verdict_list = [], [], []
+    for i, key in enumerate(all_keys):
+        if not key.startswith(s_prefix):
+            continue
+        parts = key.split("|")
+        if len(parts) != 4:
+            continue
+        _, _, sid, ts = parts
+        fname = f"attack-{sid}_{ts}.jsonl"
+        v = verdicts.get(fname)
+        if v is None:
+            continue
+        emb_list.append(all_emb[i])
+        sids.append(sid)
+        verdict_list.append(v)
 
-def extract_scenario_id(path: Path) -> str:
-    m = re.search(r"(T\d+-C\d+-S\d+)", path.name)
-    return m.group(1) if m else path.stem
+    if not emb_list:
+        raise RuntimeError("No matched traces for this (agent, s-folder).")
 
+    emb = np.vstack(emb_list)
+    n = len(emb_list)
+    threats = [parse_scenario_id(s)[0] for s in sids]
+    cases = [parse_scenario_id(s)[1] for s in sids]
+    print(f"Analyzing {n} traces\n")
 
-def extract_threat_num(scenario_id: str) -> str:
-    m = re.match(r"(T\d+)", scenario_id)
-    return m.group(1) if m else "T?"
+    # Outlier detection + per-scenario stats
+    sim = cosine_sim_matrix(emb)
+    by_scen = defaultdict(list)
+    for i, s in enumerate(sids):
+        by_scen[s].append(i)
 
+    outlier_global = set()
+    split_counter = Counter()
+    for s, idxs in by_scen.items():
+        vloc = [verdict_list[i] for i in idxs]
+        vc = Counter(vloc)
+        cnts = sorted(vc.values(), reverse=True)
+        if len(vc) == 1:
+            split_counter[f"{cnts[0]}:0"] += 1
+        elif cnts == [4, 1]:
+            split_counter["4:1"] += 1
+        elif cnts == [3, 2]:
+            split_counter["3:2"] += 1
+        else:
+            split_counter[":".join(str(c) for c in cnts)] += 1
+        outlier_global |= flag_outliers(idxs, vloc, sim)
 
-def extract_case_num(scenario_id: str) -> str:
-    m = re.search(r"(C\d+)", scenario_id)
-    return m.group(1) if m else "C?"
+    print(f"Verdict splits: {dict(split_counter)}")
+    print(f"Outliers: {len(outlier_global)}/{n} "
+          f"({len(outlier_global)/n*100:.1f}%)\n")
 
-
-# ─────────────────────────────────────────────
-# 임베딩 (ada-002)
-# ─────────────────────────────────────────────
-
-def get_embeddings(texts: List[str], client: OpenAI) -> np.ndarray:
-    # 빈 문자열은 placeholder로 대체 (ada-002는 빈 입력 거부)
-    safe_texts = [t if t.strip() else "(empty)" for t in texts]
-    response = client.embeddings.create(
-        model="text-embedding-ada-002",
-        input=safe_texts,
-    )
-    vectors = [item.embedding for item in response.data]
-    return np.array(vectors, dtype=np.float32)
-
-
-def get_weighted_vectors(
-    tool_texts: List[str],
-    final_texts: List[str],
-    client: OpenAI,
-    tool_weight: float = 0.7,
-    final_weight: float = 0.3,
-) -> np.ndarray:
-    """
-    tool sequence와 final 텍스트를 각각 임베딩 후 가중 평균 벡터 생성.
-    weighted_vec = normalize(tool_vec) * tool_weight + normalize(final_vec) * final_weight
-    """
-    print(f"  [ada-002] tool sequence {len(tool_texts)}개 임베딩 중...")
-    tool_vecs = normalize(get_embeddings(tool_texts, client), norm="l2")
-
-    print(f"  [ada-002] final 텍스트 {len(final_texts)}개 임베딩 중...")
-    final_vecs = normalize(get_embeddings(final_texts, client), norm="l2")
-
-    weighted = tool_vecs * tool_weight + final_vecs * final_weight
-    weighted = normalize(weighted, norm="l2")
-    print(f"  → 가중 평균 벡터 shape: {weighted.shape} (tool={tool_weight}, final={final_weight})")
-    return weighted
-
-
-# ─────────────────────────────────────────────
-# UMAP 2D 축소
-# ─────────────────────────────────────────────
-
-def reduce_umap(
-    vectors: np.ndarray,
-    n_neighbors: int = 5,
-    min_dist: float = 0.3,
-    spread: float = 3.0,
-) -> np.ndarray:
-    print(f"  [UMAP] 2D 축소 중... (n_neighbors={n_neighbors}, min_dist={min_dist}, spread={spread})")
+    # ── UMAP (tuned for spread) ─────────────────────────────────────────────
+    import umap
     reducer = umap.UMAP(
-        n_components=2,
-        n_neighbors=n_neighbors,
-        min_dist=min_dist,
-        spread=spread,
+        n_neighbors=8,     # smaller → more local structure, more spread
+        min_dist=0.6,      # larger → clusters farther apart
+        spread=1.5,
         metric="cosine",
         random_state=42,
     )
-    embedded = reducer.fit_transform(vectors)
-    print(f"  → 완료: shape {embedded.shape}")
-    return embedded
+    coords = reducer.fit_transform(emb)
 
+    # ── Plot ────────────────────────────────────────────────────────────────
+    import matplotlib.pyplot as plt
+    from matplotlib.lines import Line2D
+    from matplotlib.patches import Patch
 
-# ─────────────────────────────────────────────
-# KNN Outlier 탐지
-# ─────────────────────────────────────────────
+    try:
+        from adjustText import adjust_text
+        has_adjusttext = True
+    except ImportError:
+        print("⚠ adjustText not installed. pip install adjustText")
+        has_adjusttext = False
 
-def detect_outliers_knn(
-    vectors: np.ndarray,
-    scenario_ids: List[str],
-    threshold: float = 0.035,
-) -> List[bool]:
-    """
-    같은 scenario_id 그룹 내에서 outlier 탐지.
-    - n=2: 두 점 간 코사인 거리 > threshold → 둘 다 outlier
-    - n>=3: K=그룹크기-1 KNN 평균 거리 > threshold → outlier
-    """
-    vecs = normalize(vectors, norm="l2")
-    n = len(vecs)
-    is_outlier = [False] * n
+    BG = "#141414"
+    GRID = "#2e2e2e"
+    TEXT = "#ececec"
+    LEGEND_BG = "#1f1f1f"
+    LEGEND_EDGE = "#4a4a4a"
+    OUTLIER_EDGE = "#ff3b3b"
 
-    groups = defaultdict(list)
-    for i, sid in enumerate(scenario_ids):
-        groups[sid].append(i)
+    threat_colors = build_threat_color_map(threats)
 
-    for sid, idxs in groups.items():
-        if len(idxs) < 2:
-            continue
+    fig, ax = plt.subplots(figsize=(16, 12), facecolor=BG)
+    ax.set_facecolor(BG)
 
-        group_vecs = vecs[idxs]
+    # Scatter each trace
+    for i in range(n):
+        color = threat_colors.get(threats[i], "#999999")
+        marker = CASE_MARKERS.get(cases[i], CASE_MARKER_FALLBACK)
+        is_out = i in outlier_global
+        size = 130 if is_out else 70
+        lw = 2.0 if is_out else 0.4
+        edge = OUTLIER_EDGE if is_out else "#0a0a0a"
+        ax.scatter(coords[i, 0], coords[i, 1],
+                    c=[color], s=size, marker=marker,
+                    alpha=0.95, edgecolors=edge, linewidths=lw,
+                    zorder=3 if is_out else 2)
 
-        if len(idxs) == 2:
-            dist = float(cosine_distances(group_vecs[[0]], group_vecs[[1]])[0][0])
-            print(f"  [그룹] {sid} (2개) | cosine_dist={dist:.4f}")
-            if dist > threshold:
-                is_outlier[idxs[0]] = True
-                is_outlier[idxs[1]] = True
-                print(f"    → [outlier] 둘 다 | {dist:.4f} > threshold={threshold}")
-            continue
+    # ── Build labels: one per (scenario, verdict) group ─────────────────────
+    # Group traces by (scenario_id, verdict); each group gets ONE label
+    # placed at the group centroid.
+    group_traces = defaultdict(list)   # (sid, verdict) → list of global idx
+    for i in range(n):
+        group_traces[(sids[i], verdict_list[i])].append(i)
 
-        k = len(idxs) - 1
-        nn = NearestNeighbors(n_neighbors=k, metric="cosine")
-        nn.fit(group_vecs)
-        distances, _ = nn.kneighbors(group_vecs)
-        avg_distances = distances.mean(axis=1)
+    labels_info = []  # list of (label_text, centroid_xy, source_point_idx)
+    for (sid, v), members in group_traces.items():
+        cnt = len(members)
+        label_text = f"{sid} {cnt}{v}"
+        cx = float(np.mean(coords[members, 0]))
+        cy = float(np.mean(coords[members, 1]))
+        # Use the member closest to centroid as the "source point" for
+        # leader-line drawing.
+        dists = [np.hypot(coords[m, 0] - cx, coords[m, 1] - cy)
+                 for m in members]
+        src = members[int(np.argmin(dists))]
+        labels_info.append((label_text, (cx, cy), src))
 
-        print(f"  [그룹] {sid} ({len(idxs)}개) | avg_dist: {[round(float(d),4) for d in avg_distances]}")
-
-        for local_i, global_i in enumerate(idxs):
-            if float(avg_distances[local_i]) > threshold:
-                is_outlier[global_i] = True
-                print(f"    → [outlier] run{local_i+1} | {avg_distances[local_i]:.4f} > threshold={threshold}")
-
-    n_outliers = sum(is_outlier)
-    print(f"  [KNN Outlier] threshold={threshold} → {n_outliers}/{n}개 outlier 탐지")
-    return is_outlier
-
-
-# ─────────────────────────────────────────────
-# 시각화
-# ─────────────────────────────────────────────
-
-COLORS = [
-    "#E63946", "#457B9D", "#2A9D8F", "#E9C46A",
-    "#F4A261", "#A8DADC", "#6A0572", "#264653",
-    "#8338EC", "#FB5607", "#3A86FF", "#FFBE0B",
-]
-
-MARKERS = ["o", "s", "^", "D", "v", "P", "h", "p", "<", ">", "8", "H"]
-
-
-def plot_embeddings(
-    coords: np.ndarray,
-    labels: List[str],
-    threat_labels: List[str],
-    file_names: List[str],
-    is_outlier: List[bool],
-    tool_weight: float,
-    final_weight: float,
-    output_path: Path,
-) -> None:
-    unique_threats = sorted(set(threat_labels), key=lambda x: int(x[1:]))
-    case_labels = [extract_case_num(sid) for sid in labels]
-    unique_cases = sorted(set(case_labels))
-
-    threat_color_map = {t: COLORS[i % len(COLORS)] for i, t in enumerate(unique_threats)}
-    marker_map = {c: MARKERS[i % len(MARKERS)] for i, c in enumerate(unique_cases)}
-
-    fig, ax = plt.subplots(figsize=(14, 10))
-    ax.set_facecolor("#1a1a2e")
-    fig.patch.set_facecolor("#1a1a2e")
-
-    _annotations = []
-
-    for i, (x, y) in enumerate(coords):
-        threat = threat_labels[i]
-        case = case_labels[i]
-        color = threat_color_map[threat]
-        marker = marker_map[case]
-        outlier = is_outlier[i]
-
-        if outlier:
-            ax.scatter(x, y, c=color, marker=marker, s=200, alpha=0.95,
-                       edgecolors="#FF3333", linewidths=2.5, zorder=4)
-            ax.scatter(x, y, c="none", marker="x", s=220, alpha=1.0,
-                       edgecolors="#FF3333", linewidths=2.5, zorder=5)
-        else:
-            ax.scatter(x, y, c=color, marker=marker, s=130, alpha=0.88,
-                       edgecolors="white", linewidths=0.5, zorder=3)
-
-        _annotations.append((x, y, labels[i], "#FF3333" if outlier else "white", 0.95 if outlier else 0.75))
+    print(f"Labels: {len(labels_info)} (one per scenario×verdict group)")
 
     texts = []
-    for (x, y, lbl, color, alpha) in _annotations:
-        t = ax.text(x, y, lbl, fontsize=7, color=color, alpha=alpha)
+    src_points = []
+    for label_text, (cx, cy), src in labels_info:
+        t = ax.text(cx, cy, label_text,
+                     fontsize=7, color=TEXT,
+                     ha="center", va="center", zorder=5)
         texts.append(t)
+        src_points.append((coords[src, 0], coords[src, 1]))
 
-    if HAS_ADJUST_TEXT:
+    if has_adjusttext and texts:
         adjust_text(
-            texts, ax=ax,
-            arrowprops=dict(arrowstyle="-", color="gray", lw=0.4, alpha=0.5),
-            expand_points=(1.5, 1.5),
-            expand_text=(1.3, 1.3),
+            texts,
+            expand_points=(1.3, 1.4),
+            expand_text=(1.1, 1.2),
+            force_text=(0.5, 0.6),
+            force_points=(0.2, 0.3),
+            only_move={"text": "xy"},
         )
 
-    # 범례 1: T번호 (색상)
-    threat_patches = [mpatches.Patch(color=threat_color_map[t], label=t) for t in unique_threats]
-    legend1 = ax.legend(handles=threat_patches, loc="upper left", title="Threat Type",
-                        framealpha=0.3, labelcolor="white", facecolor="#0d0d1a",
-                        edgecolor="gray", fontsize=9, title_fontsize=9)
-    legend1.get_title().set_color("white")
-    ax.add_artist(legend1)
+        # Leader lines: rendered label center → source point
+        fig.canvas.draw()
+        renderer = fig.canvas.get_renderer()
+        inv = ax.transData.inverted()
+        xr = coords[:, 0].max() - coords[:, 0].min()
+        yr = coords[:, 1].max() - coords[:, 1].min()
+        thresh = float(np.hypot(xr, yr)) * 0.015
+        for t, (ox, oy) in zip(texts, src_points):
+            bbox = t.get_window_extent(renderer=renderer)
+            cx = (bbox.x0 + bbox.x1) / 2
+            cy = (bbox.y0 + bbox.y1) / 2
+            tx, ty = inv.transform((cx, cy))
+            if np.hypot(tx - ox, ty - oy) > thresh:
+                ax.plot([ox, tx], [oy, ty],
+                         color="#888888", lw=0.4, alpha=0.6,
+                         zorder=1.5, solid_capstyle="round")
 
-    # 범례 2: C번호 (마커)
-    case_handles = [
-        Line2D([0], [0], marker=marker_map[c], color="w", markerfacecolor="gray",
-               markersize=8, label=c, linestyle="None")
-        for c in unique_cases
+    # Legend 1: Threat Type (upper-left)
+    def tkey(t):
+        m = re.match(r"T(\d+)", t)
+        return int(m.group(1)) if m else 999
+
+    threat_handles = [
+        Patch(facecolor=threat_colors[t], edgecolor="#111111",
+              linewidth=0.5, label=t)
+        for t in sorted(threat_colors.keys(), key=tkey)
     ]
-    legend2 = ax.legend(handles=case_handles, loc="upper right", title="Case",
-                        framealpha=0.3, labelcolor="white", facecolor="#0d0d1a",
-                        edgecolor="gray", fontsize=9, title_fontsize=9)
-    legend2.get_title().set_color("white")
-    ax.add_artist(legend2)
-
-    # 범례 3: outlier
-    outlier_handle = Line2D([0], [0], marker="x", color="#FF3333",
-                            markerfacecolor="#FF3333", markersize=10,
-                            label="Outlier (KNN)", linestyle="None", markeredgewidth=2.5)
-    ax.legend(handles=[outlier_handle], loc="lower right", framealpha=0.3,
-              labelcolor="white", facecolor="#0d0d1a", edgecolor="gray", fontsize=9)
-
-    title = (f"Attack Trace Embedding Space\n"
-             f"(ada-002 weighted avg  tool={tool_weight} / final={final_weight}  |  UMAP)")
-    ax.set_title(title, color="white", fontsize=13, pad=15)
-    ax.set_xlabel("UMAP-1", color="gray", fontsize=10)
-    ax.set_ylabel("UMAP-2", color="gray", fontsize=10)
-    ax.tick_params(colors="gray")
-    for spine in ax.spines.values():
-        spine.set_edgecolor("#333355")
-    ax.grid(True, alpha=0.15, color="white", linestyle="--")
-
-    plt.tight_layout()
-    plt.savefig(output_path, dpi=150, bbox_inches="tight", facecolor=fig.get_facecolor())
-    print(f"\n[OK] 저장 완료: {output_path}")
-    plt.show()
-
-
-# ─────────────────────────────────────────────
-# API 키 로드
-# ─────────────────────────────────────────────
-
-def load_api_key(cli_key: str) -> str:
-    if cli_key:
-        return cli_key.strip()
-    key_path = Path(DEFAULT_KEY_PATH)
-    if key_path.exists():
-        key = key_path.read_text(encoding="utf-8").strip()
-        print(f"[KEY] {key_path} 에서 로드")
-        return key
-    raise RuntimeError(f"API 키를 찾을 수 없습니다: {DEFAULT_KEY_PATH}")
-
-
-# ─────────────────────────────────────────────
-# Main
-# ─────────────────────────────────────────────
-
-def main() -> None:
-    parser = argparse.ArgumentParser(description="CCS Attack Trace 임베딩 시각화 (ada-002 가중 평균 + UMAP)")
-    parser.add_argument("--logs-dir", default=DEFAULT_LOGS_DIR)
-    parser.add_argument("--openai-key", default="")
-    parser.add_argument("--output", default="embedding_plot.png")
-    parser.add_argument("--tool-weight", type=float, default=0.7, help="tool sequence 가중치 (기본 0.7)")
-    parser.add_argument("--final-weight", type=float, default=0.3, help="final 텍스트 가중치 (기본 0.3)")
-    parser.add_argument("--n-neighbors", type=int, default=5)
-    parser.add_argument("--min-dist", type=float, default=0.3)
-    parser.add_argument("--spread", type=float, default=3.0)
-    parser.add_argument("--threshold", type=float, default=0.035, help="KNN outlier threshold (기본 0.035)")
-    args = parser.parse_args()
-
-    api_key = load_api_key(args.openai_key)
-    client = OpenAI(api_key=api_key)
-
-    logs_dir = Path(args.logs_dir)
-    if not logs_dir.exists():
-        raise FileNotFoundError(f"디렉토리 없음: {logs_dir}")
-
-    log_files = sorted(logs_dir.glob("attack-T*.jsonl"))
-    if not log_files:
-        raise FileNotFoundError(f"attack-T*.jsonl 파일 없음: {logs_dir}")
-
-    print(f"[파일] {len(log_files)}개 발견\n")
-
-    tool_texts, final_texts, scenario_ids, threat_nums, file_names = [], [], [], [], []
-    for f in log_files:
-        records = load_jsonl(f)
-        tool_text, final_text = parse_trace(records)
-        sid = extract_scenario_id(f)
-        tnum = extract_threat_num(sid)
-
-        tool_texts.append(tool_text)
-        final_texts.append(final_text)
-        scenario_ids.append(sid)
-        threat_nums.append(tnum)
-        file_names.append(f.name)
-        print(f"  {sid:20s} | {tool_text[:60]}...")
-
-    print(f"\n총 {len(tool_texts)}개 trace 추출 완료\n")
-
-    # 가중 평균 임베딩
-    vectors = get_weighted_vectors(
-        tool_texts, final_texts, client,
-        tool_weight=args.tool_weight,
-        final_weight=args.final_weight,
+    leg1 = ax.legend(
+        handles=threat_handles, title="Threat Type",
+        loc="upper left", fontsize=8, title_fontsize=9,
+        framealpha=0.92, facecolor=LEGEND_BG,
+        edgecolor=LEGEND_EDGE, labelcolor=TEXT,
     )
+    leg1.get_title().set_color(TEXT)
+    ax.add_artist(leg1)
 
-    # UMAP
-    coords = reduce_umap(vectors, n_neighbors=args.n_neighbors, min_dist=args.min_dist, spread=args.spread)
+    # Legend 2: Case + Outlier (upper-right)
+    present_cases = sorted(
+        set(cases),
+        key=lambda c: int(re.match(r"C(\d+)", c).group(1))
+                      if re.match(r"C(\d+)", c) else 999,
+    )
+    case_handles = [
+        Line2D([0], [0], marker=CASE_MARKERS.get(c, CASE_MARKER_FALLBACK),
+                color="none", markerfacecolor="#cccccc",
+                markeredgecolor="#111111", markersize=11, label=c)
+        for c in present_cases
+    ]
+    case_handles.append(
+        Line2D([0], [0], marker="o", color="none",
+                markerfacecolor="#cccccc", markeredgecolor=OUTLIER_EDGE,
+                markeredgewidth=2.2, markersize=12, label="Outlier")
+    )
+    leg2 = ax.legend(
+        handles=case_handles, title="Case / Outlier",
+        loc="upper right", fontsize=9, title_fontsize=9,
+        framealpha=0.92, facecolor=LEGEND_BG,
+        edgecolor=LEGEND_EDGE, labelcolor=TEXT,
+    )
+    leg2.get_title().set_color(TEXT)
 
-    # KNN Outlier 탐지
-    is_outlier = detect_outliers_knn(vectors, scenario_ids, threshold=args.threshold)
+    # Axes / title
+    n_o = sum(1 for v in verdict_list if v == "O")
+    ax.set_title(
+        f"{args.agent} / {args.s_folder}   trace-level UMAP\n"
+        f"{n} traces · {n_o} O · {n - n_o} X · "
+        f"{len(outlier_global)} outliers",
+        fontsize=12, color=TEXT, pad=14,
+    )
+    ax.set_xlabel("UMAP-1", color=TEXT)
+    ax.set_ylabel("UMAP-2", color=TEXT)
+    ax.tick_params(colors=TEXT)
+    for spine in ax.spines.values():
+        spine.set_color(LEGEND_EDGE)
+    ax.grid(True, alpha=0.25, linestyle="--", color=GRID)
 
-    # 시각화
-    output_path = Path(args.output)
-    plot_embeddings(coords, scenario_ids, threat_nums, file_names, is_outlier,
-                    args.tool_weight, args.final_weight, output_path)
-
-    # CSV 저장
-    csv_path = output_path.with_suffix(".csv")
-    with csv_path.open("w", encoding="utf-8") as f:
-        f.write("scenario_id,threat,umap_x,umap_y,outlier,file\n")
-        for sid, t, (x, y), out, fn in zip(scenario_ids, threat_nums, coords, is_outlier, file_names):
-            f.write(f"{sid},{t},{x:.6f},{y:.6f},{out},{fn}\n")
-    print(f"[OK] 좌표 CSV 저장: {csv_path}")
+    # Save
+    out_dir = Path(args.output_dir) if args.output_dir \
+        else Path(args.scenarios_root) / args.agent
+    out_dir.mkdir(parents=True, exist_ok=True)
+    png_path = out_dir / f"umap_{args.s_folder}.png"
+    plt.tight_layout()
+    plt.savefig(png_path, dpi=200, bbox_inches="tight", facecolor=BG)
+    plt.close()
+    print(f"Saved → {png_path}")
 
 
 if __name__ == "__main__":

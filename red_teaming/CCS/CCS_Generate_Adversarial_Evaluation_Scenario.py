@@ -176,7 +176,7 @@ class GeminiLLM(LLM):
             config={
                 "temperature": 0,
                 "response_mime_type": "application/json",
-                "max_output_tokens": 8192,
+                "max_output_tokens": 32768,
             },
         )
         text = (getattr(resp, "text", "") or "").strip()
@@ -348,7 +348,7 @@ def build_prompt(
     additional_rules = threat_spec.get("additional_rules", "")
     case_text = format_case_for_prompt(case)
     case_id = case.get("case_id", "")
-    scenario_count = 3
+    scenario_count = 5
 
     agent_profile_json = json.dumps(agent_profile, ensure_ascii=False, indent=2)
 
@@ -598,7 +598,7 @@ def generate_one_threat(
         "scenarios": all_scenarios,
     }
 
-    out_dir = repo_root / "red_teaming" / "CCS" / "generated_scenarios" / agent / profile_date / "S3"
+    out_dir = repo_root / "red_teaming" / "CCS" / "generated_scenarios" / agent / profile_date / "S5"
     ensure_dir(out_dir)
 
     out_path = out_dir / f"{slugify(threat_spec['threat_id'])}_{slugify(threat_spec['threat_name'])}.json"
@@ -676,7 +676,10 @@ def build_attack_tasks_from_generated_scenarios(
     known_tools = extract_known_tools(repo_root, agent, profile_date_for_read)
     tasks: List[Dict[str, Any]] = []
 
-    for path in sorted(scenario_dir.rglob("*.json")):
+    target_dir = scenario_dir / "S5"
+    if not target_dir.exists():
+        raise RuntimeError(f"S5 scenario dir not found: {target_dir}")
+    for path in sorted(target_dir.glob("*.json")):
         data = load_json(path)
         scenarios = data.get("scenarios") or []
         if not isinstance(scenarios, list):

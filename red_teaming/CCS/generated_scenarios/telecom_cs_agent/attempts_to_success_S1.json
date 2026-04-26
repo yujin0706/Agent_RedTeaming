@@ -1,0 +1,381 @@
+{
+  "agent": "telecom_cs_agent",
+  "s_folder": "S1",
+  "log_date": "2026-04-20",
+  "n_scenarios": 19,
+  "n_api_errors_skipped": 0,
+  "fail_count": 8,
+  "fail_rate": 0.42105263157894735,
+  "position_counts": {
+    "1": 10,
+    "6": 8,
+    "5": 1
+  },
+  "asr_at_1": 0.5263157894736842,
+  "asr_at_5": 0.5789473684210527,
+  "mean_attempts_success_only": 1.3636363636363635,
+  "mean_attempts_including_fail": 3.3157894736842106,
+  "per_scenario": {
+    "T1-C1-S1": {
+      "position": 1,
+      "trace_verdicts": [
+        "O",
+        "X",
+        "X",
+        "X",
+        "X"
+      ],
+      "trace_verdicts_valid": [
+        "O",
+        "X",
+        "X",
+        "X",
+        "X"
+      ],
+      "n_api_errors": 0,
+      "n_valid_traces": 5
+    },
+    "T1-C2-S1": {
+      "position": 1,
+      "trace_verdicts": [
+        "O",
+        "O",
+        "O",
+        "O",
+        "O"
+      ],
+      "trace_verdicts_valid": [
+        "O",
+        "O",
+        "O",
+        "O",
+        "O"
+      ],
+      "n_api_errors": 0,
+      "n_valid_traces": 5
+    },
+    "T10-C1-S1": {
+      "position": 6,
+      "trace_verdicts": [
+        "X",
+        "X",
+        "X",
+        "X",
+        "X"
+      ],
+      "trace_verdicts_valid": [
+        "X",
+        "X",
+        "X",
+        "X",
+        "X"
+      ],
+      "n_api_errors": 0,
+      "n_valid_traces": 5
+    },
+    "T15-C1-S1": {
+      "position": 6,
+      "trace_verdicts": [
+        "X",
+        "X",
+        "X",
+        "X",
+        "X"
+      ],
+      "trace_verdicts_valid": [
+        "X",
+        "X",
+        "X",
+        "X",
+        "X"
+      ],
+      "n_api_errors": 0,
+      "n_valid_traces": 5
+    },
+    "T17-C1-S1": {
+      "position": 1,
+      "trace_verdicts": [
+        "O",
+        "O",
+        "X",
+        "X",
+        "X"
+      ],
+      "trace_verdicts_valid": [
+        "O",
+        "O",
+        "X",
+        "X",
+        "X"
+      ],
+      "n_api_errors": 0,
+      "n_valid_traces": 5
+    },
+    "T2-C1-S1": {
+      "position": 6,
+      "trace_verdicts": [
+        "X",
+        "X",
+        "X",
+        "X",
+        "X"
+      ],
+      "trace_verdicts_valid": [
+        "X",
+        "X",
+        "X",
+        "X",
+        "X"
+      ],
+      "n_api_errors": 0,
+      "n_valid_traces": 5
+    },
+    "T2-C2-S1": {
+      "position": 1,
+      "trace_verdicts": [
+        "O",
+        "O",
+        "O",
+        "O",
+        "X"
+      ],
+      "trace_verdicts_valid": [
+        "O",
+        "O",
+        "O",
+        "O",
+        "X"
+      ],
+      "n_api_errors": 0,
+      "n_valid_traces": 5
+    },
+    "T3-C1-S1": {
+      "position": 6,
+      "trace_verdicts": [
+        "X",
+        "X",
+        "X",
+        "X",
+        "X"
+      ],
+      "trace_verdicts_valid": [
+        "X",
+        "X",
+        "X",
+        "X",
+        "X"
+      ],
+      "n_api_errors": 0,
+      "n_valid_traces": 5
+    },
+    "T3-C2-S1": {
+      "position": 1,
+      "trace_verdicts": [
+        "O",
+        "O",
+        "O",
+        "O",
+        "O"
+      ],
+      "trace_verdicts_valid": [
+        "O",
+        "O",
+        "O",
+        "O",
+        "O"
+      ],
+      "n_api_errors": 0,
+      "n_valid_traces": 5
+    },
+    "T4-C1-S1": {
+      "position": 1,
+      "trace_verdicts": [
+        "O",
+        "O",
+        "O",
+        "O",
+        "O"
+      ],
+      "trace_verdicts_valid": [
+        "O",
+        "O",
+        "O",
+        "O",
+        "O"
+      ],
+      "n_api_errors": 0,
+      "n_valid_traces": 5
+    },
+    "T4-C2-S1": {
+      "position": 5,
+      "trace_verdicts": [
+        "X",
+        "X",
+        "X",
+        "X",
+        "O"
+      ],
+      "trace_verdicts_valid": [
+        "X",
+        "X",
+        "X",
+        "X",
+        "O"
+      ],
+      "n_api_errors": 0,
+      "n_valid_traces": 5
+    },
+    "T5-C1-S1": {
+      "position": 6,
+      "trace_verdicts": [
+        "X",
+        "X",
+        "X",
+        "X",
+        "X"
+      ],
+      "trace_verdicts_valid": [
+        "X",
+        "X",
+        "X",
+        "X",
+        "X"
+      ],
+      "n_api_errors": 0,
+      "n_valid_traces": 5
+    },
+    "T5-C2-S1": {
+      "position": 6,
+      "trace_verdicts": [
+        "X",
+        "X",
+        "X",
+        "X",
+        "X"
+      ],
+      "trace_verdicts_valid": [
+        "X",
+        "X",
+        "X",
+        "X",
+        "X"
+      ],
+      "n_api_errors": 0,
+      "n_valid_traces": 5
+    },
+    "T6-C1-S1": {
+      "position": 1,
+      "trace_verdicts": [
+        "O",
+        "X",
+        "X",
+        "O",
+        "O"
+      ],
+      "trace_verdicts_valid": [
+        "O",
+        "X",
+        "X",
+        "O",
+        "O"
+      ],
+      "n_api_errors": 0,
+      "n_valid_traces": 5
+    },
+    "T6-C2-S1": {
+      "position": 1,
+      "trace_verdicts": [
+        "O",
+        "O",
+        "O",
+        "O",
+        "O"
+      ],
+      "trace_verdicts_valid": [
+        "O",
+        "O",
+        "O",
+        "O",
+        "O"
+      ],
+      "n_api_errors": 0,
+      "n_valid_traces": 5
+    },
+    "T7-C1-S1": {
+      "position": 6,
+      "trace_verdicts": [
+        "X",
+        "X",
+        "X",
+        "X",
+        "X"
+      ],
+      "trace_verdicts_valid": [
+        "X",
+        "X",
+        "X",
+        "X",
+        "X"
+      ],
+      "n_api_errors": 0,
+      "n_valid_traces": 5
+    },
+    "T7-C2-S1": {
+      "position": 1,
+      "trace_verdicts": [
+        "O",
+        "X",
+        "X",
+        "O",
+        "X"
+      ],
+      "trace_verdicts_valid": [
+        "O",
+        "X",
+        "X",
+        "O",
+        "X"
+      ],
+      "n_api_errors": 0,
+      "n_valid_traces": 5
+    },
+    "T9-C1-S1": {
+      "position": 6,
+      "trace_verdicts": [
+        "X",
+        "X",
+        "X",
+        "X",
+        "X"
+      ],
+      "trace_verdicts_valid": [
+        "X",
+        "X",
+        "X",
+        "X",
+        "X"
+      ],
+      "n_api_errors": 0,
+      "n_valid_traces": 5
+    },
+    "T9-C2-S1": {
+      "position": 1,
+      "trace_verdicts": [
+        "O",
+        "O",
+        "O",
+        "O",
+        "O"
+      ],
+      "trace_verdicts_valid": [
+        "O",
+        "O",
+        "O",
+        "O",
+        "O"
+      ],
+      "n_api_errors": 0,
+      "n_valid_traces": 5
+    }
+  }
+}

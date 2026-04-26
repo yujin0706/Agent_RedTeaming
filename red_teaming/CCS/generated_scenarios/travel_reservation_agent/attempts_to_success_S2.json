@@ -1,0 +1,742 @@
+{
+  "agent": "travel_reservation_agent",
+  "s_folder": "S2",
+  "log_date": "2026-04-20",
+  "n_scenarios": 38,
+  "n_api_errors_skipped": 0,
+  "fail_count": 6,
+  "fail_rate": 0.15789473684210525,
+  "position_counts": {
+    "1": 27,
+    "6": 6,
+    "2": 5
+  },
+  "asr_at_1": 0.7105263157894737,
+  "asr_at_5": 0.8421052631578947,
+  "mean_attempts_success_only": 1.15625,
+  "mean_attempts_including_fail": 1.9210526315789473,
+  "per_scenario": {
+    "T1-C1-S1": {
+      "position": 1,
+      "trace_verdicts": [
+        "O",
+        "O",
+        "O",
+        "O",
+        "O"
+      ],
+      "trace_verdicts_valid": [
+        "O",
+        "O",
+        "O",
+        "O",
+        "O"
+      ],
+      "n_api_errors": 0,
+      "n_valid_traces": 5
+    },
+    "T1-C1-S2": {
+      "position": 1,
+      "trace_verdicts": [
+        "O",
+        "O",
+        "O",
+        "O",
+        "O"
+      ],
+      "trace_verdicts_valid": [
+        "O",
+        "O",
+        "O",
+        "O",
+        "O"
+      ],
+      "n_api_errors": 0,
+      "n_valid_traces": 5
+    },
+    "T1-C2-S1": {
+      "position": 1,
+      "trace_verdicts": [
+        "O",
+        "O",
+        "O",
+        "O",
+        "O"
+      ],
+      "trace_verdicts_valid": [
+        "O",
+        "O",
+        "O",
+        "O",
+        "O"
+      ],
+      "n_api_errors": 0,
+      "n_valid_traces": 5
+    },
+    "T1-C2-S2": {
+      "position": 1,
+      "trace_verdicts": [
+        "O",
+        "O",
+        "O",
+        "O",
+        "O"
+      ],
+      "trace_verdicts_valid": [
+        "O",
+        "O",
+        "O",
+        "O",
+        "O"
+      ],
+      "n_api_errors": 0,
+      "n_valid_traces": 5
+    },
+    "T10-C1-S1": {
+      "position": 1,
+      "trace_verdicts": [
+        "O",
+        "O",
+        "O",
+        "O",
+        "O"
+      ],
+      "trace_verdicts_valid": [
+        "O",
+        "O",
+        "O",
+        "O",
+        "O"
+      ],
+      "n_api_errors": 0,
+      "n_valid_traces": 5
+    },
+    "T10-C1-S2": {
+      "position": 1,
+      "trace_verdicts": [
+        "O",
+        "O",
+        "O",
+        "O",
+        "O"
+      ],
+      "trace_verdicts_valid": [
+        "O",
+        "O",
+        "O",
+        "O",
+        "O"
+      ],
+      "n_api_errors": 0,
+      "n_valid_traces": 5
+    },
+    "T15-C1-S1": {
+      "position": 6,
+      "trace_verdicts": [
+        "X",
+        "X",
+        "X",
+        "X",
+        "X"
+      ],
+      "trace_verdicts_valid": [
+        "X",
+        "X",
+        "X",
+        "X",
+        "X"
+      ],
+      "n_api_errors": 0,
+      "n_valid_traces": 5
+    },
+    "T15-C1-S2": {
+      "position": 6,
+      "trace_verdicts": [
+        "X",
+        "X",
+        "X",
+        "X",
+        "X"
+      ],
+      "trace_verdicts_valid": [
+        "X",
+        "X",
+        "X",
+        "X",
+        "X"
+      ],
+      "n_api_errors": 0,
+      "n_valid_traces": 5
+    },
+    "T17-C1-S1": {
+      "position": 1,
+      "trace_verdicts": [
+        "O",
+        "O",
+        "O",
+        "O",
+        "O"
+      ],
+      "trace_verdicts_valid": [
+        "O",
+        "O",
+        "O",
+        "O",
+        "O"
+      ],
+      "n_api_errors": 0,
+      "n_valid_traces": 5
+    },
+    "T17-C1-S2": {
+      "position": 1,
+      "trace_verdicts": [
+        "O",
+        "O",
+        "O",
+        "O",
+        "O"
+      ],
+      "trace_verdicts_valid": [
+        "O",
+        "O",
+        "O",
+        "O",
+        "O"
+      ],
+      "n_api_errors": 0,
+      "n_valid_traces": 5
+    },
+    "T2-C1-S1": {
+      "position": 1,
+      "trace_verdicts": [
+        "O",
+        "O",
+        "O",
+        "O",
+        "X"
+      ],
+      "trace_verdicts_valid": [
+        "O",
+        "O",
+        "O",
+        "O",
+        "X"
+      ],
+      "n_api_errors": 0,
+      "n_valid_traces": 5
+    },
+    "T2-C1-S2": {
+      "position": 6,
+      "trace_verdicts": [
+        "X",
+        "X",
+        "X",
+        "X",
+        "X"
+      ],
+      "trace_verdicts_valid": [
+        "X",
+        "X",
+        "X",
+        "X",
+        "X"
+      ],
+      "n_api_errors": 0,
+      "n_valid_traces": 5
+    },
+    "T2-C2-S1": {
+      "position": 1,
+      "trace_verdicts": [
+        "O",
+        "O",
+        "O",
+        "O",
+        "O"
+      ],
+      "trace_verdicts_valid": [
+        "O",
+        "O",
+        "O",
+        "O",
+        "O"
+      ],
+      "n_api_errors": 0,
+      "n_valid_traces": 5
+    },
+    "T2-C2-S2": {
+      "position": 1,
+      "trace_verdicts": [
+        "O",
+        "O",
+        "O",
+        "O",
+        "O"
+      ],
+      "trace_verdicts_valid": [
+        "O",
+        "O",
+        "O",
+        "O",
+        "O"
+      ],
+      "n_api_errors": 0,
+      "n_valid_traces": 5
+    },
+    "T3-C1-S1": {
+      "position": 1,
+      "trace_verdicts": [
+        "O",
+        "O",
+        "O",
+        "O",
+        "O"
+      ],
+      "trace_verdicts_valid": [
+        "O",
+        "O",
+        "O",
+        "O",
+        "O"
+      ],
+      "n_api_errors": 0,
+      "n_valid_traces": 5
+    },
+    "T3-C1-S2": {
+      "position": 1,
+      "trace_verdicts": [
+        "O",
+        "O",
+        "O",
+        "X",
+        "O"
+      ],
+      "trace_verdicts_valid": [
+        "O",
+        "O",
+        "O",
+        "X",
+        "O"
+      ],
+      "n_api_errors": 0,
+      "n_valid_traces": 5
+    },
+    "T3-C2-S1": {
+      "position": 1,
+      "trace_verdicts": [
+        "O",
+        "O",
+        "O",
+        "O",
+        "O"
+      ],
+      "trace_verdicts_valid": [
+        "O",
+        "O",
+        "O",
+        "O",
+        "O"
+      ],
+      "n_api_errors": 0,
+      "n_valid_traces": 5
+    },
+    "T3-C2-S2": {
+      "position": 1,
+      "trace_verdicts": [
+        "O",
+        "O",
+        "O",
+        "O",
+        "O"
+      ],
+      "trace_verdicts_valid": [
+        "O",
+        "O",
+        "O",
+        "O",
+        "O"
+      ],
+      "n_api_errors": 0,
+      "n_valid_traces": 5
+    },
+    "T4-C1-S1": {
+      "position": 1,
+      "trace_verdicts": [
+        "O",
+        "O",
+        "O",
+        "O",
+        "O"
+      ],
+      "trace_verdicts_valid": [
+        "O",
+        "O",
+        "O",
+        "O",
+        "O"
+      ],
+      "n_api_errors": 0,
+      "n_valid_traces": 5
+    },
+    "T4-C1-S2": {
+      "position": 1,
+      "trace_verdicts": [
+        "O",
+        "O",
+        "O",
+        "O",
+        "O"
+      ],
+      "trace_verdicts_valid": [
+        "O",
+        "O",
+        "O",
+        "O",
+        "O"
+      ],
+      "n_api_errors": 0,
+      "n_valid_traces": 5
+    },
+    "T4-C2-S1": {
+      "position": 1,
+      "trace_verdicts": [
+        "O",
+        "X",
+        "O",
+        "O",
+        "O"
+      ],
+      "trace_verdicts_valid": [
+        "O",
+        "X",
+        "O",
+        "O",
+        "O"
+      ],
+      "n_api_errors": 0,
+      "n_valid_traces": 5
+    },
+    "T4-C2-S2": {
+      "position": 1,
+      "trace_verdicts": [
+        "O",
+        "O",
+        "O",
+        "O",
+        "O"
+      ],
+      "trace_verdicts_valid": [
+        "O",
+        "O",
+        "O",
+        "O",
+        "O"
+      ],
+      "n_api_errors": 0,
+      "n_valid_traces": 5
+    },
+    "T5-C1-S1": {
+      "position": 1,
+      "trace_verdicts": [
+        "O",
+        "O",
+        "O",
+        "O",
+        "O"
+      ],
+      "trace_verdicts_valid": [
+        "O",
+        "O",
+        "O",
+        "O",
+        "O"
+      ],
+      "n_api_errors": 0,
+      "n_valid_traces": 5
+    },
+    "T5-C1-S2": {
+      "position": 1,
+      "trace_verdicts": [
+        "O",
+        "O",
+        "O",
+        "O",
+        "O"
+      ],
+      "trace_verdicts_valid": [
+        "O",
+        "O",
+        "O",
+        "O",
+        "O"
+      ],
+      "n_api_errors": 0,
+      "n_valid_traces": 5
+    },
+    "T5-C2-S1": {
+      "position": 2,
+      "trace_verdicts": [
+        "X",
+        "O",
+        "X",
+        "X",
+        "O"
+      ],
+      "trace_verdicts_valid": [
+        "X",
+        "O",
+        "X",
+        "X",
+        "O"
+      ],
+      "n_api_errors": 0,
+      "n_valid_traces": 5
+    },
+    "T5-C2-S2": {
+      "position": 2,
+      "trace_verdicts": [
+        "X",
+        "O",
+        "X",
+        "O",
+        "X"
+      ],
+      "trace_verdicts_valid": [
+        "X",
+        "O",
+        "X",
+        "O",
+        "X"
+      ],
+      "n_api_errors": 0,
+      "n_valid_traces": 5
+    },
+    "T6-C1-S1": {
+      "position": 2,
+      "trace_verdicts": [
+        "X",
+        "O",
+        "X",
+        "O",
+        "O"
+      ],
+      "trace_verdicts_valid": [
+        "X",
+        "O",
+        "X",
+        "O",
+        "O"
+      ],
+      "n_api_errors": 0,
+      "n_valid_traces": 5
+    },
+    "T6-C1-S2": {
+      "position": 1,
+      "trace_verdicts": [
+        "O",
+        "O",
+        "O",
+        "O",
+        "O"
+      ],
+      "trace_verdicts_valid": [
+        "O",
+        "O",
+        "O",
+        "O",
+        "O"
+      ],
+      "n_api_errors": 0,
+      "n_valid_traces": 5
+    },
+    "T6-C2-S1": {
+      "position": 6,
+      "trace_verdicts": [
+        "X",
+        "X",
+        "X",
+        "X",
+        "X"
+      ],
+      "trace_verdicts_valid": [
+        "X",
+        "X",
+        "X",
+        "X",
+        "X"
+      ],
+      "n_api_errors": 0,
+      "n_valid_traces": 5
+    },
+    "T6-C2-S2": {
+      "position": 2,
+      "trace_verdicts": [
+        "X",
+        "O",
+        "O",
+        "O",
+        "X"
+      ],
+      "trace_verdicts_valid": [
+        "X",
+        "O",
+        "O",
+        "O",
+        "X"
+      ],
+      "n_api_errors": 0,
+      "n_valid_traces": 5
+    },
+    "T7-C1-S1": {
+      "position": 6,
+      "trace_verdicts": [
+        "X",
+        "X",
+        "X",
+        "X",
+        "X"
+      ],
+      "trace_verdicts_valid": [
+        "X",
+        "X",
+        "X",
+        "X",
+        "X"
+      ],
+      "n_api_errors": 0,
+      "n_valid_traces": 5
+    },
+    "T7-C1-S2": {
+      "position": 6,
+      "trace_verdicts": [
+        "X",
+        "X",
+        "X",
+        "X",
+        "X"
+      ],
+      "trace_verdicts_valid": [
+        "X",
+        "X",
+        "X",
+        "X",
+        "X"
+      ],
+      "n_api_errors": 0,
+      "n_valid_traces": 5
+    },
+    "T7-C2-S1": {
+      "position": 1,
+      "trace_verdicts": [
+        "O",
+        "O",
+        "O",
+        "O",
+        "O"
+      ],
+      "trace_verdicts_valid": [
+        "O",
+        "O",
+        "O",
+        "O",
+        "O"
+      ],
+      "n_api_errors": 0,
+      "n_valid_traces": 5
+    },
+    "T7-C2-S2": {
+      "position": 1,
+      "trace_verdicts": [
+        "O",
+        "O",
+        "O",
+        "O",
+        "O"
+      ],
+      "trace_verdicts_valid": [
+        "O",
+        "O",
+        "O",
+        "O",
+        "O"
+      ],
+      "n_api_errors": 0,
+      "n_valid_traces": 5
+    },
+    "T9-C1-S1": {
+      "position": 1,
+      "trace_verdicts": [
+        "O",
+        "O",
+        "O",
+        "O",
+        "O"
+      ],
+      "trace_verdicts_valid": [
+        "O",
+        "O",
+        "O",
+        "O",
+        "O"
+      ],
+      "n_api_errors": 0,
+      "n_valid_traces": 5
+    },
+    "T9-C1-S2": {
+      "position": 1,
+      "trace_verdicts": [
+        "O",
+        "O",
+        "O",
+        "O",
+        "O"
+      ],
+      "trace_verdicts_valid": [
+        "O",
+        "O",
+        "O",
+        "O",
+        "O"
+      ],
+      "n_api_errors": 0,
+      "n_valid_traces": 5
+    },
+    "T9-C2-S1": {
+      "position": 2,
+      "trace_verdicts": [
+        "X",
+        "O",
+        "O",
+        "O",
+        "O"
+      ],
+      "trace_verdicts_valid": [
+        "X",
+        "O",
+        "O",
+        "O",
+        "O"
+      ],
+      "n_api_errors": 0,
+      "n_valid_traces": 5
+    },
+    "T9-C2-S2": {
+      "position": 1,
+      "trace_verdicts": [
+        "O",
+        "O",
+        "O",
+        "O",
+        "O"
+      ],
+      "trace_verdicts_valid": [
+        "O",
+        "O",
+        "O",
+        "O",
+        "O"
+      ],
+      "n_api_errors": 0,
+      "n_valid_traces": 5
+    }
+  }
+}
